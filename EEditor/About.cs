@@ -66,16 +66,16 @@ namespace EEditor
                     link1 = "https://forums.everybodyedits.com/viewtopic.php?id=47253";
                     break;
                 case "BugsOrFeatureButton":
-                    link1 = "https://github.com/capasha/EEOEditor/issues";
+                    link1 = "https://github.com/capashaa/EEOEditor/issues";
                     break;
                 case "CreditButton":
                     link1 = "https://github.com/capasha/EEOEditor/wiki/Credits";
                     break;
                 case "WikiButton":
-                    link1 = "https://github.com/capasha/EEOEditor/wiki";
+                    link1 = "https://github.com/capashaa/EEOEditor/wiki";
                     break;
                 case "HomepageButton":
-                    link1 = "https://github.com/capasha/EEOEditor";
+                    link1 = "https://github.com/capashaa/EEOEditor";
                     break;
                 case "btnDiscord":
                     link1 = "https://discord.gg/V5maATbSgc";
