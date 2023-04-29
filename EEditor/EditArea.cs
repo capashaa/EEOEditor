@@ -354,8 +354,9 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
             Size size = new Size(BlockWidth * MainForm.Zoom, BlockHeight * MainForm.Zoom);
             Back = new Bitmap(BlockWidth * MainForm.Zoom, BlockHeight * MainForm.Zoom);
             //Minimap.Init(BlockWidth, BlockHeight);
-            Thread td = new Thread(PaintCurFrame);
-            td.Start();
+            /*Thread td = new Thread(PaintCurFrame);
+            td.Start();*/
+            PaintCurFrame();
             this.AutoScrollMinSize = size;
             this.Invalidate();
             started = true;
@@ -424,7 +425,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                 {
                     if (bid != 0)
                     {
-                        g.DrawImage(Bricks[bid], x * 16, y * 16);
+                        g.DrawImage(Bricks[bid], x * MainForm.Zoom, y * MainForm.Zoom);
                     }
                     else
                     {
@@ -433,18 +434,18 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                         {
                             if (MainForm.userdata.thisColor != Color.Transparent)
                             {
-                                g.FillRectangle(new SolidBrush(MainForm.userdata.thisColor), new Rectangle(x * 16, y * 16, 16, 16));
+                                g.FillRectangle(new SolidBrush(MainForm.userdata.thisColor), new Rectangle(x * MainForm.Zoom, y * MainForm.Zoom, MainForm.Zoom, MainForm.Zoom));
                             }
                             else
                             {
-                                g.DrawImage(Bricks[bid], x * 16, y * 16);
+                                g.DrawImage(Bricks[bid], x * MainForm.Zoom, y * MainForm.Zoom);
                             }
                         }
                         else
                         {
                             if (MainForm.userdata.thisColor != Color.Transparent)
                             {
-                                g.FillRectangle(new SolidBrush(MainForm.userdata.thisColor), new Rectangle(x * 16, y * 16, 16, 16));
+                                g.FillRectangle(new SolidBrush(MainForm.userdata.thisColor), new Rectangle(x * MainForm.Zoom, y * MainForm.Zoom, MainForm.Zoom, MainForm.Zoom));
                             }
                             else
                             {
@@ -471,7 +472,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                 {
                     if (fid != 0)
                     {
-                        g.DrawImage(Bricks[fid], x * 16, y * 16);
+                        g.DrawImage(Bricks[fid], x * MainForm.Zoom, y * MainForm.Zoom);
                     }
                     else
                     {
@@ -479,7 +480,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                         {
                             if (MainForm.userdata.thisColor != Color.Transparent)
                             {
-                                g.FillRectangle(new SolidBrush(MainForm.userdata.thisColor), new Rectangle(x * 16, y * 16, 16, 16));
+                                g.FillRectangle(new SolidBrush(MainForm.userdata.thisColor), new Rectangle(x * MainForm.Zoom, y * MainForm.Zoom, MainForm.Zoom, MainForm.Zoom));
                             }
                             else
                             {
@@ -490,11 +491,11 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                         {
                             if (MainForm.userdata.thisColor != Color.Transparent)
                             {
-                                g.FillRectangle(new SolidBrush(MainForm.userdata.thisColor), new Rectangle(x * 16, y * 16, 16, 16));
+                                g.FillRectangle(new SolidBrush(MainForm.userdata.thisColor), new Rectangle(x * MainForm.Zoom, y * MainForm.Zoom, MainForm.Zoom, MainForm.Zoom));
                             }
                             else
                             {
-                                g.DrawImage(Bricks[fid], x * 16, y * 16);
+                                g.DrawImage(Bricks[fid], x * MainForm.Zoom, y * MainForm.Zoom);
                             }
                         }
                     }
@@ -507,7 +508,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                     if (fid < 500 || fid >= 1001 && fid < 2500)
                     {
                         Bitmap bmp2 = unknowBricks.Clone(new Rectangle(2 * 16, 0, 16, 16), unknowBricks.PixelFormat);
-                        g.DrawImage(bmp2, x * 16, y * 16);
+                        g.DrawImage(bmp2, x * MainForm.Zoom, y * MainForm.Zoom);
                     }
                 }
             }
@@ -749,13 +750,15 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                 else if (bdata.portals.Contains(CurFrame.Foreground[p.Y, p.X]))
                 {
                     MainForm.rot.Text = CurFrame.BlockData[p.Y, p.X].ToString();
-                    MainForm.idtarget.Text = CurFrame.BlockData1[p.Y, p.X].ToString() + " > " + CurFrame.BlockData2[p.Y, p.X].ToString();
+                    MainForm.id.Text = CurFrame.BlockData1[p.Y, p.X].ToString();
+                    MainForm.target.Text = CurFrame.BlockData2[p.Y, p.X].ToString();
                 }
                 else
                 {
                     MainForm.rot.Text = CurFrame.BlockData[p.Y, p.X].ToString();
-                    MainForm.txt.Text = "";
-                    MainForm.idtarget.Text = "0 > 0";
+                    MainForm.txt.Text = "Empty";
+                    MainForm.id.Text = "0";
+                    MainForm.target.Text = "0";
                 }
             }
         }
@@ -778,7 +781,6 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
             //Frames[n].Reset();
             changeFrame(n);
         }
-
         public void changeFrame(int n)
         {
             curFrame = n;
@@ -792,7 +794,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
 
         public void SetMarkBlock(string[,] Area, string[,] Back, string[,] Coins, string[,] id, string[,] target, string[,] text, string[,] text1, string[,] text2, string[,] text3)
         {
-            SetMarkBlock(Area, Back, Coins, id, target, text, text1, text2, text3, Math.Abs(AutoScrollPosition.X) / 16, Math.Abs(AutoScrollPosition.Y) / 16);
+            SetMarkBlock(Area, Back, Coins, id, target, text, text1, text2, text3, Math.Abs(AutoScrollPosition.X) / MainForm.Zoom, Math.Abs(AutoScrollPosition.Y) / MainForm.Zoom);
         }
 
         public void SetMarkBlock(string[,] Area, string[,] Back, string[,] Coins, string[,] id, string[,] target, string[,] text, string[,] text1, string[,] text2, string[,] text3, int xPos, int yPos)

@@ -114,14 +114,14 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                         break;
                 }
 
-                Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.miscBMD.PixelFormat);
                 return bmp2;
             }
             else if (bdata.morphable.Contains(fid))
             {
                 if (fid >= 1101 && fid <= 1105)
                 {
-                    Bitmap bmp2 = MainForm.foregroundBMD.Clone(new Rectangle(MainForm.foregroundBMI[fid] * 16, 0, 16, 16), MainForm.foregroundBMD.PixelFormat);
+                    Bitmap bmp2 = MainForm.foregroundBMD.Clone(new Rectangle(MainForm.foregroundBMI[fid] * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.foregroundBMD.PixelFormat);
                     return bmp2;
                 }
                 else if (fid == 276 || fid == 277 || fid == 279 || fid == 280 || fid == 338 || 
@@ -476,7 +476,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                     if (roted == 15) return null;
                     else
                     {
-                        Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                        Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.miscBMD.PixelFormat);
                         return bmp2;
                     }
                 }
@@ -528,7 +528,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                             roted = 15;
                             break;
                     }
-                    Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                    Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.miscBMD.PixelFormat);
                     return bmp2;
                 }
                 else if (fid >= 375 && fid <= 380 || fid == 438 || fid == 439)
@@ -585,7 +585,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                             roted = 15;
                             break;
                     }
-                    Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                    Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.miscBMD.PixelFormat);
                     return bmp2;
                 }
                 //New Year 2015
@@ -619,7 +619,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                             roted = 15;
                             break;
                     }
-                    Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                    Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.miscBMD.PixelFormat);
                     return bmp2;
                 }
                     //Summer 2016
@@ -660,7 +660,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                             roted = 15;
                             break;
                     }
-                    Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                    Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.miscBMD.PixelFormat);
                     return bmp2;
                 }
                 else
@@ -719,7 +719,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                         if (fid == 1635) roted = 582;
                         break;
                 }
-                Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.miscBMD.PixelFormat);
                 return bmp2;
             }
             else if (fid >= 417 && fid <= 420 || fid == 453 || fid == 461)
@@ -751,7 +751,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                         if (fid == 461) roted = 252;
                         break;
                 }
-                Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.miscBMD.PixelFormat);
                 return bmp2;
             }
             else if (fid >= 421 && fid <= 423 || fid == 1027 || fid == 1028)
@@ -816,7 +816,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                         else if (fid == 421) roted = 78;
                         break;
                 }
-                Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.miscBMD.PixelFormat);
                 return bmp2;
             }
             //One-Way blocks
@@ -875,7 +875,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                         if (fid == 1092) rote = 310;
                         break;
                 }
-                Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(rote * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(rote * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.miscBMD.PixelFormat);
                 return bmp2;
             }
             else if (fid == 242 || fid == 381)
@@ -900,7 +900,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                         if (fid == 381) rote = 115;
                         break;
                 }
-                Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(rote * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(rote * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.miscBMD.PixelFormat);
                 return bmp2;
             }
             else

@@ -33,21 +33,21 @@ namespace EEditor
             Graphics g = Graphics.FromImage(editArea.Back1);
             if (PenID >= 500 && PenID <= 999)
             {
-                    img1 = MainForm.backgroundBMD.Clone(new Rectangle(MainForm.backgroundBMI[PenID] * 16, 0, 16, 16), MainForm.backgroundBMD.PixelFormat);
+                    img1 = MainForm.backgroundBMD.Clone(new Rectangle(MainForm.backgroundBMI[PenID] * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.backgroundBMD.PixelFormat);
             }
             else if (PenID < 500 || PenID >= 1001)
             {
                 if (MainForm.miscBMI[PenID] != 0)
                 {
-                        img1 = MainForm.miscBMD.Clone(new Rectangle(MainForm.miscBMI[PenID] * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                        img1 = MainForm.miscBMD.Clone(new Rectangle(MainForm.miscBMI[PenID] * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.miscBMD.PixelFormat);
                 }
                 else if (MainForm.decosBMI[PenID] != 0)
                 {
-                    img1 = MainForm.decosBMD.Clone(new Rectangle(MainForm.decosBMI[PenID] * 16, 0, 16, 16), MainForm.decosBMD.PixelFormat);
+                    img1 = MainForm.decosBMD.Clone(new Rectangle(MainForm.decosBMI[PenID] * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.decosBMD.PixelFormat);
                 }
                 else
                 {
-                    img1 = MainForm.foregroundBMD.Clone(new Rectangle(MainForm.foregroundBMI[PenID] * 16, 0, 16, 16), MainForm.foregroundBMD.PixelFormat);
+                    img1 = MainForm.foregroundBMD.Clone(new Rectangle(MainForm.foregroundBMI[PenID] * 16, 0, MainForm.Zoom, MainForm.Zoom), MainForm.foregroundBMD.PixelFormat);
                 }
             }
             
@@ -117,7 +117,7 @@ namespace EEditor
                         if (start.Y == end.Y && start.X == end.X) { }
                         else
                         {
-                            g.DrawImage(img2, x * 16, y * 16);
+                            g.DrawImage(img2, x * MainForm.Zoom, y * MainForm.Zoom);
                         }
                     }
                 }
@@ -333,8 +333,8 @@ namespace EEditor
             /*Rectangle r = new Rectangle(Math.Min(p.X, q.X) * 16, Math.Min(p.Y, q.Y) * 16,
                     (Math.Max(p.X, q.X) - Math.Min(p.X, q.X) + 1) * 16 - 1, (Math.Max(p.Y, q.Y) - Math.Min(p.Y, q.Y) + 1) * 16 - 1);
                     */
-            Rectangle r = new Rectangle(Math.Min(p.X, q.X) * 16, Math.Min(p.Y, q.Y) * 16,
-            (Math.Max(p.X, q.X) - Math.Min(p.X, q.X) + 1) * 16 - 1, (Math.Max(p.Y, q.Y) - Math.Min(p.Y, q.Y) + 1) * 16 - 1);
+            Rectangle r = new Rectangle(Math.Min(p.X, q.X) * MainForm.Zoom, Math.Min(p.Y, q.Y) * MainForm.Zoom,
+            (Math.Max(p.X, q.X) - Math.Min(p.X, q.X) + 1) * MainForm.Zoom - 1, (Math.Max(p.Y, q.Y) - Math.Min(p.Y, q.Y) + 1) * MainForm.Zoom - 1);
             return r;
         }
 

@@ -52,8 +52,8 @@ namespace EEditor
                 {
                     progress = Progress.Select;
                     editArea.MainForm.SetTransFormToolStrip(false);
-                    Size size = new Size(16 * Rect.Width, 16 * Rect.Height);
-                    CutBitmap = editArea.Back.Clone(new Rectangle(new Point(16 * Rect.X, 16 * Rect.Y), size), System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                    Size size = new Size(MainForm.Zoom * Rect.Width, MainForm.Zoom * Rect.Height);
+                    CutBitmap = editArea.Back.Clone(new Rectangle(new Point(MainForm.Zoom * Rect.X, MainForm.Zoom * Rect.Y), size), System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                     BackBitmap = new Bitmap(size.Width, size.Height);
                 }
             }
@@ -219,8 +219,8 @@ namespace EEditor
 
              return new Rectangle(x, y, w, h);*/
 
-            Rectangle r = new Rectangle(Math.Min(p.X, q.X) * 16, Math.Min(p.Y, q.Y) * 16,
-                    (Math.Max(p.X, q.X) - Math.Min(p.X, q.X) + 1) * 16 - 1, (Math.Max(p.Y, q.Y) - Math.Min(p.Y, q.Y) + 1) * 16 - 1);
+            Rectangle r = new Rectangle(Math.Min(p.X, q.X) * MainForm.Zoom, Math.Min(p.Y, q.Y) * MainForm.Zoom,
+                    (Math.Max(p.X, q.X) - Math.Min(p.X, q.X) + 1) * MainForm.Zoom - 1, (Math.Max(p.Y, q.Y) - Math.Min(p.Y, q.Y) + 1) * MainForm.Zoom - 1);
             return r;
         }
 
