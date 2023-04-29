@@ -64,7 +64,9 @@ namespace EEditor
         public ToolStripLabel bg { get { return backgroundLabel; } set { backgroundLabel = value; } }
         public ToolStripLabel pos { get { return positionLabel; } set { positionLabel = value; } }
         public ToolStripLabel rot { get { return rotationLabel; } set { rotationLabel = value; } }
-        public ToolStripLabel idtarget { get { return idtargetLabel; } set { idtargetLabel = value; } }
+        public ToolStripLabel id { get { return idLabel; } set { idLabel = value; } }
+
+        public ToolStripLabel target { get { return targetLabel; } set { targetLabel = value; } }
         public ToolStripLabel txt { get { return textLabel; } set { textLabel = value; } }
         public ToolStripComboBox tsc { get { return frameSelector; } set { frameSelector = value; } }
         public static bool selectionTool = false;
@@ -446,9 +448,6 @@ namespace EEditor
 
             timer.Elapsed += timer_Elapsed;
             timer.Start();
-
-            // Extract topbar images to tile
-            topbar2tile(false);
             
             Tool.PenSize = 1;
 
@@ -468,87 +467,12 @@ namespace EEditor
             MainForm.editArea.Focus();
         }
 
-        #region Generate topbar images to tile
+        
         private void executeInitArea()
         {
             editArea.Init(25, 25);
         }
-        private void topbar2tile(bool convert)
-        {
-            if (convert)
-            {
-                var width = 0;
-                Bitmap img3 = new Bitmap(24, 24);
-                Bitmap img = new Bitmap(1024, 24);
-                Graphics g = Graphics.FromImage(img3);
-                for (int i = 0; i < topFlowLayoutPanel.Controls.Count; i++)
-                {
-                    var control = topFlowLayoutPanel.Controls[i];
-                    var items = ((ToolStrip)control).Items;
-                    if (items.Count > 0)
-                    {
 
-                        for (int o = 0; o < items.Count; o++)
-                        {
-                            if (items[o].Image != null && items[o].Name != "subButton" && items[o].Name != "addButton")
-                            {
-                                Bitmap bmp = new Bitmap(items[o].Image, new Size(24, 24));
-                                for (int xx = 0; xx < bmp.Width; xx++)
-                                {
-                                    for (int yy = 0; yy < bmp.Height; yy++)
-                                    {
-                                        if (bmp.GetPixel(xx, yy).A > 80)
-                                        {
-                                            bmp.SetPixel(xx, yy, Color.Tomato);
-                                        }
-                                        else
-                                        {
-                                            bmp.SetPixel(xx, yy, Color.Transparent);
-                                        }
-                                    }
-                                }
-                                bmp.Save($"{items[o].Name}.png");
-
-                            }
-                            if (items[o].GetType() == typeof(ToolStripDropDownButton))
-                            {
-                                var dropdownitems = ((ToolStripDropDownButton)items[o]).DropDownItems;
-                                for (int a = 0; a < dropdownitems.Count; a++)
-                                {
-                                    if (dropdownitems[a].GetType() == typeof(ToolStripMenuItem) || dropdownitems[a].Name.Contains("Button"))
-                                    {
-
-
-                                        if (dropdownitems[a].Image != null)
-                                        {
-                                            Bitmap bmp = new Bitmap(dropdownitems[a].Image, new Size(24, 24));
-                                            for (int xx = 0; xx < bmp.Width; xx++)
-                                            {
-                                                for (int yy = 0; yy < bmp.Height; yy++)
-                                                {
-                                                    if (bmp.GetPixel(xx, yy).A > 80)
-                                                    {
-                                                        bmp.SetPixel(xx, yy, Color.Tomato);
-                                                    }
-                                                    else
-                                                    {
-                                                        bmp.SetPixel(xx, yy, Color.Transparent);
-                                                    }
-                                                }
-                                            }
-                                            bmp.Save($"{dropdownitems[a].Name}.png");
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    //img3.Save("output.png");
-                }
-            }
-        }
-
-        #endregion Generate topbar images to tile
         public void updateTheme()
         {
             if (userdata.darkTheme)
@@ -637,7 +561,8 @@ namespace EEditor
                                                     {
                                                         if (bmpa.GetPixel(x, y).A > 80)
                                                         {
-                                                            bmpa1.SetPixel(x, y, themecolors.imageColors);
+ 
+                                                                bmpa1.SetPixel(x, y, themecolors.imageColors);
                                                         }
                                                         else
                                                         {
@@ -956,14 +881,14 @@ namespace EEditor
             if (userdata.HotkeyBar)
             {
                 BlockPickerToolStrip.Visible = true;
-                this.Size = new Size(1021, 589);
-                this.MinimumSize = new Size(1021, 589);
+                this.Size = new Size(1040, 589);
+                this.MinimumSize = new Size(1040, 589);
             }
             else
             {
                 BlockPickerToolStrip.Visible = false;
-                this.Size = new Size(800, 589);
-                this.MinimumSize = new Size(800, 589);
+                this.Size = new Size(900, 589);
+                this.MinimumSize = new Size(900, 589);
 
             }
         }
