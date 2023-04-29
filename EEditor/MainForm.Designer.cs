@@ -116,8 +116,8 @@ namespace EEditor
             this.foregroundLabel = new System.Windows.Forms.ToolStripLabel();
             this.backgroundLabel = new System.Windows.Forms.ToolStripLabel();
             this.rotationLabel = new System.Windows.Forms.ToolStripLabel();
-            this.idtargetLabel = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.idLabel = new System.Windows.Forms.ToolStripLabel();
+            this.targetLabel = new System.Windows.Forms.ToolStripLabel();
             this.textLabel = new System.Windows.Forms.ToolStripLabel();
             this.findToolStrip = new System.Windows.Forms.ToolStrip();
             this.filterTextBox = new System.Windows.Forms.ToolStripTextBox();
@@ -231,7 +231,7 @@ namespace EEditor
             this.hideBlocksButton,
             this.minimapButton,
             this.toolStripSeparator12});
-            this.viewToolStrip.Location = new System.Drawing.Point(618, 0);
+            this.viewToolStrip.Location = new System.Drawing.Point(686, 0);
             this.viewToolStrip.Name = "viewToolStrip";
             this.viewToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.viewToolStrip.Size = new System.Drawing.Size(162, 27);
@@ -539,33 +539,33 @@ namespace EEditor
             // 
             this.saveWorldToolStripMenuItem.Enabled = false;
             this.saveWorldToolStripMenuItem.Name = "saveWorldToolStripMenuItem";
-            this.saveWorldToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveWorldToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.saveWorldToolStripMenuItem.Text = "EEditor World";
             this.saveWorldToolStripMenuItem.Click += new System.EventHandler(this.saveWorldToolStripMenuItem_Click);
             // 
             // eelvlToolStripMenuItem1
             // 
             this.eelvlToolStripMenuItem1.Name = "eelvlToolStripMenuItem1";
-            this.eelvlToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.eelvlToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
             this.eelvlToolStripMenuItem1.Text = "EE Offline Level";
             this.eelvlToolStripMenuItem1.Click += new System.EventHandler(this.EelvlToolStripMenuItem1_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
             // 
             // worldAsImageToolStripMenuItem
             // 
             this.worldAsImageToolStripMenuItem.Name = "worldAsImageToolStripMenuItem";
-            this.worldAsImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.worldAsImageToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.worldAsImageToolStripMenuItem.Text = "World as image";
             this.worldAsImageToolStripMenuItem.Click += new System.EventHandler(this.worldAsImageToolStripMenuItem_Click);
             // 
             // minimapAsImageToolStripMenuItem
             // 
             this.minimapAsImageToolStripMenuItem.Name = "minimapAsImageToolStripMenuItem";
-            this.minimapAsImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.minimapAsImageToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.minimapAsImageToolStripMenuItem.Text = "Minimap as image";
             this.minimapAsImageToolStripMenuItem.Click += new System.EventHandler(this.minimapAsImageToolStripMenuItem_Click);
             // 
@@ -841,7 +841,7 @@ namespace EEditor
             this.topFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.topFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.topFlowLayoutPanel.Name = "topFlowLayoutPanel";
-            this.topFlowLayoutPanel.Size = new System.Drawing.Size(784, 27);
+            this.topFlowLayoutPanel.Size = new System.Drawing.Size(884, 27);
             this.topFlowLayoutPanel.TabIndex = 0;
             // 
             // historyToolStrip
@@ -921,7 +921,7 @@ namespace EEditor
             this.flowLayoutPanel6.Location = new System.Drawing.Point(0, 498);
             this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(784, 0);
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(884, 0);
             this.flowLayoutPanel6.TabIndex = 3;
             // 
             // flowLayoutPanel5
@@ -932,7 +932,7 @@ namespace EEditor
             this.flowLayoutPanel5.Location = new System.Drawing.Point(0, 498);
             this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(784, 0);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(884, 0);
             this.flowLayoutPanel5.TabIndex = 1;
             // 
             // flowLayoutPanel4
@@ -943,7 +943,7 @@ namespace EEditor
             this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 498);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(784, 0);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(884, 0);
             this.flowLayoutPanel4.TabIndex = 0;
             // 
             // flowLayoutPanel2
@@ -954,7 +954,7 @@ namespace EEditor
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 498);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(784, 0);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(884, 0);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // flowLayoutPanel3
@@ -965,7 +965,7 @@ namespace EEditor
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 498);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(784, 0);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(884, 0);
             this.flowLayoutPanel3.TabIndex = 0;
             // 
             // bottomFlowLayoutPanel
@@ -981,7 +981,7 @@ namespace EEditor
             this.bottomFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bottomFlowLayoutPanel.Location = new System.Drawing.Point(0, 498);
             this.bottomFlowLayoutPanel.Name = "bottomFlowLayoutPanel";
-            this.bottomFlowLayoutPanel.Size = new System.Drawing.Size(784, 52);
+            this.bottomFlowLayoutPanel.Size = new System.Drawing.Size(884, 52);
             this.bottomFlowLayoutPanel.TabIndex = 4;
             // 
             // statusToolStrip
@@ -994,13 +994,13 @@ namespace EEditor
             this.foregroundLabel,
             this.backgroundLabel,
             this.rotationLabel,
-            this.idtargetLabel,
-            this.toolStripSeparator7,
+            this.idLabel,
+            this.targetLabel,
             this.textLabel});
             this.statusToolStrip.Location = new System.Drawing.Point(0, 0);
             this.statusToolStrip.Name = "statusToolStrip";
             this.statusToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.statusToolStrip.Size = new System.Drawing.Size(218, 25);
+            this.statusToolStrip.Size = new System.Drawing.Size(286, 25);
             this.statusToolStrip.TabIndex = 2;
             this.statusToolStrip.Text = "toolStrip1";
             // 
@@ -1040,23 +1040,27 @@ namespace EEditor
             this.rotationLabel.Text = "0";
             this.rotationLabel.ToolTipText = "Block rotation";
             // 
-            // idtargetLabel
+            // idLabel
             // 
-            this.idtargetLabel.Image = global::EEditor.Properties.Resources.id;
-            this.idtargetLabel.Name = "idtargetLabel";
-            this.idtargetLabel.Size = new System.Drawing.Size(53, 22);
-            this.idtargetLabel.Text = "0 > 0";
-            this.idtargetLabel.ToolTipText = "Portal ID > target";
+            this.idLabel.Image = global::EEditor.Properties.Resources.id;
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(33, 22);
+            this.idLabel.Text = "0";
+            this.idLabel.ToolTipText = "Portal ID > target";
             // 
-            // toolStripSeparator7
+            // targetLabel
             // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            this.targetLabel.Image = global::EEditor.Properties.Resources.target;
+            this.targetLabel.Name = "targetLabel";
+            this.targetLabel.Size = new System.Drawing.Size(33, 22);
+            this.targetLabel.Text = "0";
             // 
             // textLabel
             // 
+            this.textLabel.Image = global::EEditor.Properties.Resources.text;
             this.textLabel.Name = "textLabel";
-            this.textLabel.Size = new System.Drawing.Size(0, 22);
+            this.textLabel.Size = new System.Drawing.Size(61, 22);
+            this.textLabel.Text = "Empty";
             this.textLabel.ToolTipText = "Sign text or world portal ID";
             // 
             // findToolStrip
@@ -1067,7 +1071,7 @@ namespace EEditor
             this.filterTextBox,
             this.pickerButton,
             this.toolStripSeparator10});
-            this.findToolStrip.Location = new System.Drawing.Point(218, 0);
+            this.findToolStrip.Location = new System.Drawing.Point(286, 0);
             this.findToolStrip.Name = "findToolStrip";
             this.findToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.findToolStrip.Size = new System.Drawing.Size(138, 27);
@@ -1115,7 +1119,7 @@ namespace EEditor
             this.BlockPicker9,
             this.BlockPicker10,
             this.toolStripSeparator9});
-            this.BlockPickerToolStrip.Location = new System.Drawing.Point(356, 0);
+            this.BlockPickerToolStrip.Location = new System.Drawing.Point(424, 0);
             this.BlockPickerToolStrip.Name = "BlockPickerToolStrip";
             this.BlockPickerToolStrip.Size = new System.Drawing.Size(262, 25);
             this.BlockPickerToolStrip.TabIndex = 4;
@@ -1305,7 +1309,7 @@ namespace EEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 550);
+            this.ClientSize = new System.Drawing.Size(884, 550);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.topFlowLayoutPanel);
             this.Controls.Add(this.flowLayoutPanel2);
@@ -1315,7 +1319,7 @@ namespace EEditor
             this.Controls.Add(this.flowLayoutPanel6);
             this.Controls.Add(this.bottomFlowLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(800, 589);
+            this.MinimumSize = new System.Drawing.Size(900, 589);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EEOditor";
@@ -1428,8 +1432,7 @@ namespace EEditor
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripLabel backgroundLabel;
         private System.Windows.Forms.ToolStripLabel rotationLabel;
-        private System.Windows.Forms.ToolStripLabel idtargetLabel;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripLabel idLabel;
         private System.Windows.Forms.ToolStripLabel textLabel;
         private System.Windows.Forms.ToolStripLabel positionLabel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
@@ -1468,6 +1471,7 @@ namespace EEditor
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripButton worldButton;
         private System.Windows.Forms.ToolStrip tstripBlocks;
+        private System.Windows.Forms.ToolStripLabel targetLabel;
     }
 }
 
