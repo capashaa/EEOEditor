@@ -465,6 +465,8 @@ namespace EEditor
                         ToolStrip strip = new ToolStrip();
                         strip.Name = MainForm.blocksdb[i].name + i;
                         strip.GripStyle = ToolStripGripStyle.Hidden;
+                        if (MainForm.userdata.darkTheme) strip.Renderer = new DarkTheme();
+                        if (!MainForm.userdata.darkTheme) strip.Renderer = new LightTheme();
                         toolStripContainer1.ContentPanel.Controls.Add(strip);
                         for (int a = 0; a < blocks.Length; a++)
                         {
@@ -500,6 +502,7 @@ namespace EEditor
                             strip.Items.Add(bt);
                             strip.BackColor = MainForm.themecolors.accent;
                             strip.ForeColor = MainForm.themecolors.foreground;
+                           
                         }
                     }
                 }
