@@ -38,6 +38,8 @@
             this.Size = new System.Drawing.Size(27, 24);
             this.Load += new System.EventHandler(this.Minimap_Load);
             this.Click += new System.EventHandler(this.Minimap_Click);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Minimap_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Minimap_KeyUp);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Minimap_MouseClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Minimap_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Minimap_MouseMove);
