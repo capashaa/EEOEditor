@@ -968,6 +968,14 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
             return canuse.Contains(bid) ? true : false;
 
         }
+
+        public static Color GetContrastColor(Color color,bool bg)
+        {
+            return (color.R * 0.299M) + (color.G * 0.587M) + (color.B * 0.114M) > 149 ?
+                bg ? Color.FromArgb(100,100,100):Color.FromArgb(75, 75, 75) :
+                bg ? Color.White:Color.FromArgb(100,100,100);
+        }
+
         public static int extractPlayerObjectsMessage(PlayerIOClient.Message param)
         {
             int _loc2_ = -1;
