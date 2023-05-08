@@ -171,8 +171,11 @@ namespace EEditor
         }
         public void Save(System.IO.BinaryWriter writer)
         {
+
             writer.Write(Width);
             writer.Write(Height);
+            writer.Write(MainForm.WOTitle);
+            writer.Write(MainForm.WONickname);
             for (int y = 0; y < Height; ++y)
                 for (int x = 0; x < Width; ++x)
                 {
@@ -205,6 +208,12 @@ namespace EEditor
                         writer.Write(BlockData4[y, x]);
                         writer.Write(BlockData5[y, x]);
                         writer.Write(BlockData6[y, x]);
+                    }
+                    if (t == 1000)
+                    {
+                        writer.Write(BlockData[y, x]);
+                        writer.Write(BlockData3[y, x]);
+                        writer.Write(BlockData4[y, x]);
                     }
                 }
             writer.Close();
@@ -657,6 +666,67 @@ namespace EEditor
             }
             Console.WriteLine(missed + " " + got);
             */
+            if (num == 8)
+            {
+
+                int width = reader.ReadInt32();
+                int height = reader.ReadInt32();
+
+                Frame f = new Frame(width, height);
+                string title = reader.ReadString();
+                string owner = reader.ReadString();
+
+                MainForm.WOTitle = title;
+                MainForm.WONickname = owner;
+
+                f.nickname = owner;
+                f.levelname = title;
+                for (int y = 0; y < height; ++y)
+                {
+                    for (int x = 0; x < width; ++x)
+                    {
+                        int t = reader.ReadInt16();
+                        f.Foreground[y, x] = t;
+                        f.Background[y, x] = reader.ReadInt16();
+                        if (bdata.goal.Contains(t) || bdata.rotate.Contains(t) || bdata.morphable.Contains(t) && t != 385 && t != 374)
+                        {
+                            f.BlockData[y, x] = Convert.ToInt32(reader.ReadInt16());
+                        }
+                        if (t == 385)
+                        {
+                            f.BlockData[y, x] = Convert.ToInt32(reader.ReadInt16());
+                            f.BlockData3[y, x] = reader.ReadString();
+                        }
+                        if (t == 374)
+                        {
+                            f.BlockData3[y, x] = reader.ReadString();
+                            f.BlockData[y, x] = Convert.ToInt32(reader.ReadInt16());
+                        }
+                        if (bdata.portals.Contains(t))
+                        {
+                            f.BlockData[y, x] = Convert.ToInt32(reader.ReadInt32());
+                            f.BlockData1[y, x] = reader.ReadInt32();
+                            f.BlockData2[y, x] = reader.ReadInt32();
+                        }
+                        if (bdata.isNPC(t))
+                        {
+                            f.BlockData3[y, x] = reader.ReadString();
+                            f.BlockData4[y, x] = reader.ReadString();
+                            f.BlockData5[y, x] = reader.ReadString();
+                            f.BlockData6[y, x] = reader.ReadString();
+                        }
+                        if (t == 1000)
+                        {
+                            f.BlockData[y, x] = Convert.ToInt32(reader.ReadInt32());
+                            f.BlockData3[y, x] = reader.ReadString();
+                            f.BlockData4[y, x] = reader.ReadString();
+                        }
+                    }
+                }
+                Console.WriteLine(f.levelname);
+                return f;
+
+            }
             if (num == 7)
             {
                 int width = reader.ReadInt32();
