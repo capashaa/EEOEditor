@@ -32,7 +32,7 @@ namespace EEditor
                 ControlStyles.UserPaint |
                 ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            BackColor = Color.Transparent;
+            this.BackColor = Color.Transparent;
             System.Windows.Forms.Timer scrollTimer = new System.Windows.Forms.Timer() { Interval = 15 };
             scrollTimer.Tick += ScrollTimer_Tick;
             scrollTimer.Start();
