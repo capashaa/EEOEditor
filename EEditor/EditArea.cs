@@ -695,7 +695,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
             if (!started)
             {
                 Point p = Tool.GetLocation(e);
-                if (e.X / MainForm.Zoom <= CurFrame.Width) MainForm.pos.Text = "X: " + p.X + " Y: " + p.Y;
+                if (e.X / MainForm.Zoom <= CurFrame.Width && e.Y / MainForm.Zoom <= CurFrame.Height) MainForm.pos.Text = "X: " + p.X + " Y: " + p.Y;
                 MainForm.fg.Text = CurFrame.Foreground[p.Y, p.X].ToString();
                 MainForm.bg.Text = CurFrame.Background[p.Y, p.X].ToString();
                 if (CurFrame.Foreground[p.Y, p.X] == 374)
@@ -713,29 +713,17 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                         }
                         MainForm.rot.Text = CurFrame.BlockData[p.Y, p.X].ToString();
                         MainForm.txt.Text = text;
+                        MainForm.rot.Visible = true;
+                        MainForm.txt.Visible = true;
                     }
                 }
                 else if (CurFrame.Foreground[p.Y, p.X] == 385)
                 {
 
                     string text = null;
-                    if (CurFrame.BlockData3[p.Y, p.X].Length >= 10)
-                    {
-                        text = CurFrame.BlockData3[p.Y, p.X].Substring(0, 10) + "....";
-                    }
-                    else
-                    {
-                        text = CurFrame.BlockData3[p.Y, p.X];
-                    }
-                    MainForm.rot.Text = CurFrame.BlockData[p.Y, p.X].ToString();
-                    MainForm.txt.Text = text;
-                }
-                else if (CurFrame.Foreground[p.Y, p.X] == 1000)
-                {
-                    string text = null;
                     if (CurFrame.BlockData3[p.Y, p.X] != null)
                     {
-                        if (CurFrame.BlockData3[p.Y, p.X].Length >= 14)
+                        if (CurFrame.BlockData3[p.Y, p.X].Length >= 10)
                         {
                             text = CurFrame.BlockData3[p.Y, p.X].Substring(0, 10) + "....";
                         }
@@ -744,21 +732,47 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                             text = CurFrame.BlockData3[p.Y, p.X];
                         }
                         MainForm.rot.Text = CurFrame.BlockData[p.Y, p.X].ToString();
+                        MainForm.rot.Visible = true;
                         MainForm.txt.Text = text;
+                        MainForm.txt.Visible = true;
                     }
+                }
+                else if (CurFrame.Foreground[p.Y, p.X] == 1000)
+                {
+                    string text = null;
+                    if (CurFrame.BlockData3[p.Y, p.X] != null)
+                    {
+                        if (CurFrame.BlockData3[p.Y, p.X].Length >= 10)
+                        {
+                            text = CurFrame.BlockData3[p.Y, p.X].Substring(0, 10) + "....";
+                        }
+                        else
+                        {
+                            text = CurFrame.BlockData3[p.Y, p.X];
+                        }
+                        MainForm.rot.Text = CurFrame.BlockData[p.Y, p.X].ToString();
+                        MainForm.rot.Visible = true;
+                        MainForm.txt.Text = text;
+                        MainForm.txt.Visible = true;
+                    }
+
                 }
                 else if (bdata.portals.Contains(CurFrame.Foreground[p.Y, p.X]))
                 {
                     MainForm.rot.Text = CurFrame.BlockData[p.Y, p.X].ToString();
                     MainForm.id.Text = CurFrame.BlockData1[p.Y, p.X].ToString();
                     MainForm.target.Text = CurFrame.BlockData2[p.Y, p.X].ToString();
+                    MainForm.rot.Visible = true;
+                    MainForm.id.Visible = true;
+                    MainForm.target.Visible = true;
                 }
                 else
                 {
                     MainForm.rot.Text = CurFrame.BlockData[p.Y, p.X].ToString();
-                    MainForm.txt.Text = "Empty";
-                    MainForm.id.Text = "0";
-                    MainForm.target.Text = "0";
+                    MainForm.rot.Visible = true;
+                    MainForm.txt.Visible = false;
+                    MainForm.id.Visible = false;
+                    MainForm.target.Visible = false;
                 }
             }
         }
