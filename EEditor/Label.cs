@@ -104,7 +104,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
             {
                 using (var solidBrush = new SolidBrush(ColorTranslator.FromHtml(color)))
                 {
-                    gr.Clear(GetContrastColor(ColorTranslator.FromHtml(color)));
+                    gr.Clear(bdata.GetContrastColor(ColorTranslator.FromHtml(color),true));
                     gr.TextRenderingHint = TextRenderingHint.SingleBitPerPixel;
                     gr.DrawString(text, fnt, solidBrush, rectf1);
 
@@ -152,12 +152,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
             }
         }
 
-        private Color GetContrastColor(Color color)
-        {
-            return (color.R * 0.299M) + (color.G * 0.587M) + (color.B * 0.114M) > 149 ?
-                Color.FromArgb(100, 100, 100) :
-                Color.White;
-        }
+
 
         private void btnColor_Click(object sender, EventArgs e)
         {
