@@ -143,6 +143,7 @@ namespace EEditor
             this.lastUsedBlockButton3 = new System.Windows.Forms.ToolStripButton();
             this.lastUsedBlockButton4 = new System.Windows.Forms.ToolStripButton();
             this.tstripBlocks = new System.Windows.Forms.ToolStrip();
+            this.eEditor40ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.morphToolStrip.SuspendLayout();
             this.viewToolStrip.SuspendLayout();
             this.settingsToolStrip.SuspendLayout();
@@ -398,9 +399,10 @@ namespace EEditor
             // 
             this.openWorldDropButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.openWorldDropButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.eEditor38ToolStripMenuItem,
+            this.eEditor40ToolStripMenuItem,
             this.eELVLToolStripMenuItem,
             this.toolStripSeparator5,
+            this.eEditor38ToolStripMenuItem,
             this.eEditor37ToolStripMenuItem,
             this.new33ToolStripMenuItem,
             this.loadNewMenuItem,
@@ -424,7 +426,7 @@ namespace EEditor
             // 
             this.eEditor38ToolStripMenuItem.Name = "eEditor38ToolStripMenuItem";
             this.eEditor38ToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.eEditor38ToolStripMenuItem.Text = "EEditor 3.8+";
+            this.eEditor38ToolStripMenuItem.Text = "EEditor 3.8 - 3.9";
             this.eEditor38ToolStripMenuItem.Click += new System.EventHandler(this.eEditor38ToolStripMenuItem_Click);
             // 
             // eELVLToolStripMenuItem
@@ -479,6 +481,7 @@ namespace EEditor
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
             this.toolStripMenuItem1.Text = "EEditor 2010";
+            this.toolStripMenuItem1.ToolTipText = "Really old saved EEditor files";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripSeparator3
@@ -491,6 +494,7 @@ namespace EEditor
             this.savToolStripMenuItem.Name = "savToolStripMenuItem";
             this.savToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.savToolStripMenuItem.Text = "EEAnimator";
+            this.savToolStripMenuItem.ToolTipText = "EE Animator files";
             this.savToolStripMenuItem.Click += new System.EventHandler(this.savToolStripMenuItem_Click);
             // 
             // eEBuilderToolStripMenuItem
@@ -498,13 +502,16 @@ namespace EEditor
             this.eEBuilderToolStripMenuItem.Name = "eEBuilderToolStripMenuItem";
             this.eEBuilderToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.eEBuilderToolStripMenuItem.Text = "EEBuilder";
+            this.eEBuilderToolStripMenuItem.ToolTipText = "EE Autobuilder";
             this.eEBuilderToolStripMenuItem.Click += new System.EventHandler(this.eEBuilderToolStripMenuItem_Click);
             // 
             // roomDatabaseToolStripMenuItem
             // 
+            this.roomDatabaseToolStripMenuItem.Enabled = false;
             this.roomDatabaseToolStripMenuItem.Name = "roomDatabaseToolStripMenuItem";
             this.roomDatabaseToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.roomDatabaseToolStripMenuItem.Text = "JSON Database World";
+            this.roomDatabaseToolStripMenuItem.Visible = false;
             this.roomDatabaseToolStripMenuItem.Click += new System.EventHandler(this.RoomDatabaseToolStripMenuItem_Click);
             // 
             // toolStripSeparator11
@@ -537,9 +544,8 @@ namespace EEditor
             // 
             // saveWorldToolStripMenuItem
             // 
-            this.saveWorldToolStripMenuItem.Enabled = false;
             this.saveWorldToolStripMenuItem.Name = "saveWorldToolStripMenuItem";
-            this.saveWorldToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.saveWorldToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveWorldToolStripMenuItem.Text = "EEditor World";
             this.saveWorldToolStripMenuItem.Click += new System.EventHandler(this.saveWorldToolStripMenuItem_Click);
             // 
@@ -1000,6 +1006,7 @@ namespace EEditor
             this.statusToolStrip.Location = new System.Drawing.Point(0, 0);
             this.statusToolStrip.Name = "statusToolStrip";
             this.statusToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.statusToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.statusToolStrip.Size = new System.Drawing.Size(286, 25);
             this.statusToolStrip.TabIndex = 2;
             this.statusToolStrip.Text = "toolStrip1";
@@ -1305,6 +1312,14 @@ namespace EEditor
             this.tstripBlocks.TabIndex = 5;
             this.tstripBlocks.Text = "test";
             // 
+            // eEditor40ToolStripMenuItem
+            // 
+            this.eEditor40ToolStripMenuItem.Name = "eEditor40ToolStripMenuItem";
+            this.eEditor40ToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.eEditor40ToolStripMenuItem.Text = "EEditor 4.0+";
+            this.eEditor40ToolStripMenuItem.ToolTipText = "2023 EEditor files";
+            this.eEditor40ToolStripMenuItem.Click += new System.EventHandler(this.eEditor40ToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1472,6 +1487,7 @@ namespace EEditor
         private System.Windows.Forms.ToolStripButton worldButton;
         private System.Windows.Forms.ToolStrip tstripBlocks;
         private System.Windows.Forms.ToolStripLabel targetLabel;
+        private System.Windows.Forms.ToolStripMenuItem eEditor40ToolStripMenuItem;
     }
 }
 
