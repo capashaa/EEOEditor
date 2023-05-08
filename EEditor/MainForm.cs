@@ -98,7 +98,6 @@ namespace EEditor
         {
             InitializeComponent();
             form1 = this;
-
             if (!Directory.Exists($"{Directory.GetCurrentDirectory()}\\blueprints")) Directory.CreateDirectory($"{Directory.GetCurrentDirectory()}\\blueprints");
 
             if (File.Exists(pathSettings))
@@ -521,6 +520,7 @@ namespace EEditor
                 var items = ((ToolStrip)control).Items;
                 control.BackColor = themecolors.background;
                 //ProfessionalColorTable colors = darktheme ? new DarkTable() : new WhiteTable();
+
                 if (userdata.darkTheme) ((ToolStrip)control).Renderer = new DarkTheme();
                 if (!userdata.darkTheme) ((ToolStrip)control).Renderer = new LightTheme();
 
@@ -641,8 +641,8 @@ namespace EEditor
                 var control = bottomFlowLayoutPanel.Controls[ii];
                 var items = ((ToolStrip)control).Items;
                 control.BackColor = themecolors.background;
-                if (userdata.darkTheme) ((ToolStrip)control).Renderer = new DarkTheme();
-                if (!userdata.darkTheme) ((ToolStrip)control).Renderer = new LightTheme();
+
+                ((ToolStrip)control).Renderer = new removeBadRenderer();
                 if (((ToolStrip)control).Name != "lastUsedToolStrip")
                 {
                     if (items.Count > 0)
@@ -4764,6 +4764,42 @@ namespace EEditor
                     }
                     editArea.Invalidate();
                 }
+            }
+        }
+
+        private void eEditor40ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetDummy();
+            try
+            {
+                OpenFileDialog ofd = new OpenFileDialog()
+                {
+                    Title = "Select a level to load from",
+                    DefaultExt = ".eelevel",
+                    Filter = "EverybodyEdits level (*.eelevel)|*.eelevel",
+                    FilterIndex = 1,
+                    AddExtension = true,
+                    RestoreDirectory = true,
+                    CheckFileExists = true
+                };
+                if (ofd.ShowDialog() != DialogResult.OK) return;
+                string path = ofd.FileName;
+                FileStream fs = new FileStream(path, FileMode.Open);
+                BinaryReader reader = new BinaryReader(fs);
+                Frame frame = Frame.Load(reader, 8);
+                reader.Close();
+                fs.Close();
+                if (frame != null)
+                {
+                    this.Text = $".eelevel ({Path.GetFileNameWithoutExtension(Path.GetFileName(ofd.FileName))}) ({frame.levelname}) [{frame.nickname}] ({frame.Width}x{frame.Height}) - EEOditor {this.ProductVersion}";
+                    ExecuteInitFrame(frame, false);
+                }
+                else MessageBox.Show("The selected EELevel is either invalid or corrupt.", "Invalid EELevel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ofd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error has occured: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
