@@ -30,7 +30,7 @@ namespace EEditor
             ToolTip tp = new ToolTip();
             tp.SetToolTip(usePenToolCheckBox, "Enables Pen tool after switching blocks.");
             tp.SetToolTip(selectAllBorderCheckBox, "Includes bordering blocks when selecting the whole world by hotkey Ctrl+A.");
-            tp.SetToolTip(confirmCloseCheckBox, "Prompts when you attempt to close EEditor.");
+            tp.SetToolTip(confirmCloseCheckBox, "Prompts when you attempt to close EEOditor.");
             tp.SetToolTip(FasterShapeStyleCheckBox, "Showing red lines instead of blocks.");
             tp.SetToolTip(UpdateCheckCheckBox, "Check for new updates.");
             tp.SetToolTip(DarkThemeCheckBox, "Choose between light and dark theme.");
