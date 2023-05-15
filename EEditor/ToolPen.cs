@@ -534,7 +534,7 @@ namespace EEditor
                                         message = "Guitar";
                                         break;
                                 }
-                                MessageBox.Show("EEditor doesn't support the new " + message + " blocks yet.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                MessageBox.Show("EEOditor doesn't support the new " + message + " blocks yet.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 editArea.mouseDown = false;
                             }
                         }
