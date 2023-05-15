@@ -83,7 +83,7 @@
             "Blocks in unknown tab",
             "",
             "Old EEditor settings & logins",
-            "Current EEditor settings"});
+            "Current EEOditor settings"});
             this.clearComboBox.Location = new System.Drawing.Point(12, 261);
             this.clearComboBox.Name = "clearComboBox";
             this.clearComboBox.Size = new System.Drawing.Size(139, 21);
@@ -247,7 +247,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EEditor Settings";
+            this.Text = "EEOditor Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.statusStrip1.ResumeLayout(false);
