@@ -459,7 +459,7 @@ namespace EEditor
 
                 for (int i = 0; i < MainForm.blocksdb.Count; i++)
                 {
-                    if (MainForm.blocksdb[i].name.ToLower().Contains(textBox1.Text))
+                    if (MainForm.blocksdb[i].name.ToLower().Contains(textBox1.Text.ToLower()))
                     {
                         int[] blocks = MainForm.blocksdb[i].blocks;
                         ToolStrip strip = new ToolStrip();
@@ -502,7 +502,7 @@ namespace EEditor
                             strip.Items.Add(bt);
                             strip.BackColor = MainForm.themecolors.accent;
                             strip.ForeColor = MainForm.themecolors.foreground;
-                           
+
                         }
                     }
                 }
@@ -515,14 +515,14 @@ namespace EEditor
             {
                 ToolStripButton der = (ToolStripButton)sender;
                 numericUpDown2.Value = Convert.ToInt32(der.Name);
-                replaceRotate.Value = 1;
+                if (!rbSpikes.Checked) replaceRotate.Value = 1;
 
             }
             else if (e.Button == MouseButtons.Left)
             {
                 ToolStripButton der = (ToolStripButton)sender;
                 numericUpDown1.Value = Convert.ToInt32(der.Name);
-                findRotate.Value = 1;
+                if (!rbSpikes.Checked) findRotate.Value = 1;
             }
             ToolTip tp = new ToolTip();
             tp.SetToolTip(button4, "Finds the next block with ID " + numericUpDown1.Value + "\nAnd displays a red rectangle around it");
@@ -670,7 +670,7 @@ namespace EEditor
                                     MainForm.editArea.Frames[0].Foreground[yy, xx] = (int)numericUpDown2.Value;
                                 }
                             }
-                           
+
                             if (MainForm.editArea.InvokeRequired)
                             {
                                 MainForm.editArea.Invoke((MethodInvoker)delegate
@@ -688,7 +688,7 @@ namespace EEditor
 
                         }
                     }
-                    if ((numericUpDown1.Value >= 500 && numericUpDown1.Value < 1000) && (numericUpDown2.Value >= 500 && numericUpDown2.Value < 1000) ||numericUpDown1.Value == 0)
+                    if ((numericUpDown1.Value >= 500 && numericUpDown1.Value < 1000) && (numericUpDown2.Value >= 500 && numericUpDown2.Value < 1000) || numericUpDown1.Value == 0)
                     {
                         if (MainForm.editArea.Frames[0].Background[yy, xx] == numericUpDown1.Value || numericUpDown1.Value == 0)
                         {
@@ -787,7 +787,7 @@ namespace EEditor
                     replaced[y, x] = 0;
                     replaced1[y, x] = 0;
                     MainForm.editArea.Draw(x, y, Graphics.FromImage(MainForm.editArea.Back), MainForm.userdata.thisColor);
-                    
+
                 }
             }
             MainForm.editArea.Invalidate();
@@ -854,20 +854,27 @@ namespace EEditor
         }
         private void findRotation()
         {
-            var bid = (int)numericUpDown1.Value;
-            if (bid < 500 || bid >= 1001)
+            if (!rbSpikes.Checked)
             {
+                var bid = (int)numericUpDown1.Value;
+                if (bid < 500 || bid >= 1001)
+                {
 
-                if (MainForm.decosBMI[bid] != 0)
-                {
-                    img1 = bdata.getRotation(bid, Convert.ToInt32(findRotate.Value));
+                    if (MainForm.decosBMI[bid] != 0)
+                    {
+                        img1 = bdata.getRotation(bid, Convert.ToInt32(findRotate.Value));
+                    }
+                    else if (MainForm.miscBMI[bid] != 0)
+                    {
+                        img1 = bdata.getRotation(bid, Convert.ToInt32(findRotate.Value));
+                    }
+                    if (img1 != null) RotationPictureBox1.Image = img1;
+                    else RotationPictureBox1.Image = Properties.Resources.cross;
                 }
-                else if (MainForm.miscBMI[bid] != 0)
-                {
-                    img1 = bdata.getRotation(bid, Convert.ToInt32(findRotate.Value));
-                }
-                if (img1 != null) RotationPictureBox1.Image = img1;
-                else RotationPictureBox1.Image = Properties.Resources.cross;
+            }
+            else
+            {
+                RotationPictureBox1.Image = Properties.Resources.cross;
             }
         }
         private void ClearBgsButton_Click(object sender, EventArgs e)
@@ -945,20 +952,27 @@ namespace EEditor
 
         private void replaceRotating()
         {
-            var bid = (int)numericUpDown2.Value;
-            if (bid < 500 || bid >= 1001)
+            if (!rbSpikes.Checked)
             {
+                var bid = (int)numericUpDown2.Value;
+                if (bid < 500 || bid >= 1001)
+                {
 
-                if (MainForm.decosBMI[bid] != 0)
-                {
-                    img1 = bdata.getRotation(bid, Convert.ToInt32(replaceRotate.Value));
+                    if (MainForm.decosBMI[bid] != 0)
+                    {
+                        img1 = bdata.getRotation(bid, Convert.ToInt32(replaceRotate.Value));
+                    }
+                    else if (MainForm.miscBMI[bid] != 0)
+                    {
+                        img1 = bdata.getRotation(bid, Convert.ToInt32(replaceRotate.Value));
+                    }
+                    if (img1 != null) RotationPictureBox2.Image = img1;
+                    else RotationPictureBox2.Image = Properties.Resources.cross;
                 }
-                else if (MainForm.miscBMI[bid] != 0)
-                {
-                    img1 = bdata.getRotation(bid, Convert.ToInt32(replaceRotate.Value));
-                }
-                if (img1 != null) RotationPictureBox2.Image = img1;
-                else RotationPictureBox2.Image = Properties.Resources.cross;
+            }
+            else
+            {
+                RotationPictureBox2.Image = Properties.Resources.cross;
             }
         }
         private void PortalRadioButton_Click(object sender, EventArgs e)
