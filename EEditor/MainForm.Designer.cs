@@ -41,6 +41,7 @@ namespace EEditor
             this.showDecorationsButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.hideBlocksButton = new System.Windows.Forms.ToolStripButton();
+            this.btnMinimapPaint = new System.Windows.Forms.ToolStripButton();
             this.minimapButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.settingsToolStrip = new System.Windows.Forms.ToolStrip();
@@ -50,9 +51,10 @@ namespace EEditor
             this.fileToolStrip = new System.Windows.Forms.ToolStrip();
             this.newWorldButton = new System.Windows.Forms.ToolStripButton();
             this.openWorldDropButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.eEditor38ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eEditor40ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eELVLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.eEditor38ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eEditor37ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.new33ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadNewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -143,7 +145,6 @@ namespace EEditor
             this.lastUsedBlockButton3 = new System.Windows.Forms.ToolStripButton();
             this.lastUsedBlockButton4 = new System.Windows.Forms.ToolStripButton();
             this.tstripBlocks = new System.Windows.Forms.ToolStrip();
-            this.eEditor40ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.morphToolStrip.SuspendLayout();
             this.viewToolStrip.SuspendLayout();
             this.settingsToolStrip.SuspendLayout();
@@ -230,12 +231,13 @@ namespace EEditor
             this.showDecorationsButton,
             this.toolStripSeparator1,
             this.hideBlocksButton,
+            this.btnMinimapPaint,
             this.minimapButton,
             this.toolStripSeparator12});
-            this.viewToolStrip.Location = new System.Drawing.Point(686, 0);
+            this.viewToolStrip.Location = new System.Drawing.Point(0, 27);
             this.viewToolStrip.Name = "viewToolStrip";
             this.viewToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.viewToolStrip.Size = new System.Drawing.Size(162, 27);
+            this.viewToolStrip.Size = new System.Drawing.Size(217, 27);
             this.viewToolStrip.TabIndex = 0;
             this.viewToolStrip.Text = "toolStrip5";
             // 
@@ -303,6 +305,18 @@ namespace EEditor
             this.hideBlocksButton.Text = "Block bar";
             this.hideBlocksButton.ToolTipText = "Toggle block bar (N)";
             this.hideBlocksButton.Click += new System.EventHandler(this.hideBlocksButton_Click);
+            // 
+            // btnMinimapPaint
+            // 
+            this.btnMinimapPaint.CheckOnClick = true;
+            this.btnMinimapPaint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnMinimapPaint.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimapPaint.Image")));
+            this.btnMinimapPaint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnMinimapPaint.Name = "btnMinimapPaint";
+            this.btnMinimapPaint.Size = new System.Drawing.Size(24, 24);
+            this.btnMinimapPaint.Text = "toolStripButton1";
+            this.btnMinimapPaint.ToolTipText = "Toggle draw on Minimap";
+            this.btnMinimapPaint.Click += new System.EventHandler(this.btnMinimapPaint_Click);
             // 
             // minimapButton
             // 
@@ -422,12 +436,13 @@ namespace EEditor
             this.openWorldDropButton.Text = "Open";
             this.openWorldDropButton.ToolTipText = "Open a locally saved level (Ctrl+O)";
             // 
-            // eEditor38ToolStripMenuItem
+            // eEditor40ToolStripMenuItem
             // 
-            this.eEditor38ToolStripMenuItem.Name = "eEditor38ToolStripMenuItem";
-            this.eEditor38ToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.eEditor38ToolStripMenuItem.Text = "EEditor 3.8 - 3.9";
-            this.eEditor38ToolStripMenuItem.Click += new System.EventHandler(this.eEditor38ToolStripMenuItem_Click);
+            this.eEditor40ToolStripMenuItem.Name = "eEditor40ToolStripMenuItem";
+            this.eEditor40ToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.eEditor40ToolStripMenuItem.Text = "EEditor 4.0+";
+            this.eEditor40ToolStripMenuItem.ToolTipText = "2023 EEditor files";
+            this.eEditor40ToolStripMenuItem.Click += new System.EventHandler(this.eEditor40ToolStripMenuItem_Click);
             // 
             // eELVLToolStripMenuItem
             // 
@@ -440,6 +455,13 @@ namespace EEditor
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(185, 6);
+            // 
+            // eEditor38ToolStripMenuItem
+            // 
+            this.eEditor38ToolStripMenuItem.Name = "eEditor38ToolStripMenuItem";
+            this.eEditor38ToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.eEditor38ToolStripMenuItem.Text = "EEditor 3.8 - 3.9";
+            this.eEditor38ToolStripMenuItem.Click += new System.EventHandler(this.eEditor38ToolStripMenuItem_Click);
             // 
             // eEditor37ToolStripMenuItem
             // 
@@ -545,7 +567,7 @@ namespace EEditor
             // saveWorldToolStripMenuItem
             // 
             this.saveWorldToolStripMenuItem.Name = "saveWorldToolStripMenuItem";
-            this.saveWorldToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveWorldToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.saveWorldToolStripMenuItem.Text = "EEditor World";
             this.saveWorldToolStripMenuItem.Click += new System.EventHandler(this.saveWorldToolStripMenuItem_Click);
             // 
@@ -924,7 +946,7 @@ namespace EEditor
             this.flowLayoutPanel6.AutoSize = true;
             this.flowLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(0, 498);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(0, 496);
             this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
             this.flowLayoutPanel6.Size = new System.Drawing.Size(884, 0);
@@ -935,7 +957,7 @@ namespace EEditor
             this.flowLayoutPanel5.AutoSize = true;
             this.flowLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(0, 498);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(0, 496);
             this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
             this.flowLayoutPanel5.Size = new System.Drawing.Size(884, 0);
@@ -946,7 +968,7 @@ namespace EEditor
             this.flowLayoutPanel4.AutoSize = true;
             this.flowLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 498);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 496);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(884, 0);
@@ -957,7 +979,7 @@ namespace EEditor
             this.flowLayoutPanel2.AutoSize = true;
             this.flowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 498);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 496);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(884, 0);
@@ -968,7 +990,7 @@ namespace EEditor
             this.flowLayoutPanel3.AutoSize = true;
             this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 498);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 496);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(884, 0);
@@ -985,9 +1007,9 @@ namespace EEditor
             this.bottomFlowLayoutPanel.Controls.Add(this.lastUsedToolStrip);
             this.bottomFlowLayoutPanel.Controls.Add(this.tstripBlocks);
             this.bottomFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bottomFlowLayoutPanel.Location = new System.Drawing.Point(0, 498);
+            this.bottomFlowLayoutPanel.Location = new System.Drawing.Point(0, 496);
             this.bottomFlowLayoutPanel.Name = "bottomFlowLayoutPanel";
-            this.bottomFlowLayoutPanel.Size = new System.Drawing.Size(884, 52);
+            this.bottomFlowLayoutPanel.Size = new System.Drawing.Size(884, 54);
             this.bottomFlowLayoutPanel.TabIndex = 4;
             // 
             // statusToolStrip
@@ -1247,7 +1269,7 @@ namespace EEditor
             this.lastUsedBlockButton2,
             this.lastUsedBlockButton3,
             this.lastUsedBlockButton4});
-            this.lastUsedToolStrip.Location = new System.Drawing.Point(0, 27);
+            this.lastUsedToolStrip.Location = new System.Drawing.Point(217, 27);
             this.lastUsedToolStrip.Name = "lastUsedToolStrip";
             this.lastUsedToolStrip.Size = new System.Drawing.Size(118, 25);
             this.lastUsedToolStrip.TabIndex = 3;
@@ -1306,19 +1328,11 @@ namespace EEditor
             // tstripBlocks
             // 
             this.tstripBlocks.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tstripBlocks.Location = new System.Drawing.Point(118, 27);
+            this.tstripBlocks.Location = new System.Drawing.Point(335, 27);
             this.tstripBlocks.Name = "tstripBlocks";
             this.tstripBlocks.Size = new System.Drawing.Size(102, 25);
             this.tstripBlocks.TabIndex = 5;
             this.tstripBlocks.Text = "test";
-            // 
-            // eEditor40ToolStripMenuItem
-            // 
-            this.eEditor40ToolStripMenuItem.Name = "eEditor40ToolStripMenuItem";
-            this.eEditor40ToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.eEditor40ToolStripMenuItem.Text = "EEditor 4.0+";
-            this.eEditor40ToolStripMenuItem.ToolTipText = "2023 EEditor files";
-            this.eEditor40ToolStripMenuItem.Click += new System.EventHandler(this.eEditor40ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1488,6 +1502,7 @@ namespace EEditor
         private System.Windows.Forms.ToolStrip tstripBlocks;
         private System.Windows.Forms.ToolStripLabel targetLabel;
         private System.Windows.Forms.ToolStripMenuItem eEditor40ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton btnMinimapPaint;
     }
 }
 
