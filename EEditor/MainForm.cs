@@ -30,6 +30,7 @@ namespace EEditor
         public static Dictionary<int, Bitmap> ForegroundBlocks = new Dictionary<int, Bitmap>();
         public static Dictionary<int, Bitmap> DecorationBlocks = new Dictionary<int, Bitmap>();
         public static Dictionary<int, Bitmap> BackgroundBlocks = new Dictionary<int, Bitmap>();
+        public static bool PaintOnMinimap = false;
         public static List<listofBlocks> blocksdb = new List<listofBlocks>();
         public static List<int> blocksdata = new List<int>();
         public static string pathSettings = $"{Directory.GetCurrentDirectory()}\\settings.json";
@@ -217,10 +218,9 @@ namespace EEditor
             minimap = new Minimap()
             {
                 Size = new Size(25, 25),
-                Anchor = AnchorStyles.Bottom | AnchorStyles.Right
-            };
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
+        };
             editArea.Minimap = minimap;
-
             panel1.Controls.Add(minimap);
             minimap.BringToFront();
 
@@ -4800,6 +4800,18 @@ namespace EEditor
             catch (Exception ex)
             {
                 MessageBox.Show("An error has occured: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnMinimapPaint_Click(object sender, EventArgs e)
+        {
+            if (btnMinimapPaint.Checked)
+            {
+                PaintOnMinimap = true;
+            }
+            else
+            {
+                PaintOnMinimap = false;
             }
         }
     }
