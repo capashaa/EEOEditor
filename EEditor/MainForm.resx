@@ -196,6 +196,17 @@
         MIewSjPDQVvGPUQ6iDDmz98scUQAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnMinimapPaint.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD+SURBVEhLzZTBDYJAEEWxD68WYAn2YxN2YAt2oictwwY8
+        qwej84Cv3xXIgpL4khdmF/hDFtji39jXx9G4h6uq/D3rkAaHcvTOqT5O6uMgtiENjuXoxSVkHiGrCWHz
+        WqEQBQmfT8+1QjBrTaNFuAy7QvyclquTWaglQa0/wi30MVCfqzIPnlwhagaak4NpCvIXmp7LoulmhLZw
+        BK8/8ItTITc8nX/CF4NNF6VzLjTNdaJmkN7sgte9uYYe6IJqvrbe9Flzto5pmA0/iwe4oJonJ3wXbsIs
+        2sL1h2os+OPZVtINsBUPlWk4DsZD0PcWnx+Mh3i4+Co8h9Eb/BtF8QC8NrTIeyp4NwAAAABJRU5ErkJg
+        gg==
+</value>
+  </data>
   <metadata name="settingsToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>609, 9</value>
   </metadata>
@@ -229,21 +240,6 @@
   </metadata>
   <metadata name="historyToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>229, 4</value>
-  </metadata>
-  <metadata name="statusToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>868, 9</value>
-  </metadata>
-  <metadata name="findToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1001, 9</value>
-  </metadata>
-  <metadata name="BlockPickerToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>431, 0</value>
-  </metadata>
-  <metadata name="lastUsedToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>284, 48</value>
-  </metadata>
-  <metadata name="tstripBlocks.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>431, 48</value>
   </metadata>
   <metadata name="statusToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>868, 9</value>
