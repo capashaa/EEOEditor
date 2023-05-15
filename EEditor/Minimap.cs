@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Net.Mail;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
-using static System.Windows.Forms.MonthCalendar;
+//using static System.Windows.Forms.MonthCalendar;
 
 namespace EEditor
 {
@@ -16,23 +19,27 @@ namespace EEditor
         public static bool[] ImageColor = new bool[Colors.Length];
         private bool mouseDown { get; set; } = false;
         private bool draw { get; set;} = false;
+        private bool move { get; set; } = false;
+
+        private int pos { get; set; } = 0;
         static Minimap()
         {
             for (int i = 0; i < Colors.Length; ++i)
             {
                 Colors[i] = 321;
             }
+          
         }
-
         public Minimap()
         {
             InitializeComponent();
+           
+            this.BackColor = Color.Transparent;
             this.SetStyle(
                 ControlStyles.AllPaintingInWmPaint |
                 ControlStyles.UserPaint |
                 ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.BackColor = Color.Transparent;
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             System.Windows.Forms.Timer scrollTimer = new System.Windows.Forms.Timer() { Interval = 15 };
             scrollTimer.Tick += ScrollTimer_Tick;
             scrollTimer.Start();
@@ -40,9 +47,9 @@ namespace EEditor
 
         private void ScrollTimer_Tick(object sender, EventArgs e)
         {
-            if (mouseDown && draw && MainForm.editArea.Tool is ToolPen)
+            if (mouseDown && MainForm.PaintOnMinimap && MainForm.editArea.Tool is ToolPen)
             {
-                Point mouse = PointToClient(MousePosition);
+                System.Drawing.Point mouse = PointToClient(MousePosition);
                 if (ClientRectangle.Contains(mouse))
                 {
                     mouse = GetLocation(mouse);
@@ -52,18 +59,18 @@ namespace EEditor
                 }
                 else
                 {
-                    prevLocation = new Point(-1, -1);
+                    prevLocation = new System.Drawing.Point(-1, -1);
                 }
             }
             else
             {
-                prevLocation = new Point(-1, -1);
+                prevLocation = new System.Drawing.Point(-1, -1);
             }
         }
 
-        private Point prevLocation = new Point(-1, -1);
+        private System.Drawing.Point prevLocation = new System.Drawing.Point(-1, -1);
 
-        void DrawLine(Point P, Point Q)
+        void DrawLine(System.Drawing.Point P, System.Drawing.Point Q)
         {
 
             int x0 = P.X, y0 = P.Y;
@@ -98,18 +105,14 @@ namespace EEditor
                 SetPixel(xs[i], ys[i], 9);
                 MainForm.editArea.Frames[0].Foreground[ys[i], xs[i]] = 9;
                 MainForm.editArea.Draw(xs[i], ys[i], Graphics.FromImage(MainForm.editArea.Back), MainForm.userdata.thisColor);
-
-            }
-            for (int i = 0; i < xs.Count; ++i)
-            {
                 r.X = xs[i];
                 r.Y = ys[i];
             }
-
             MainForm.editArea.Invalidate();
             Invalidate();
+
         }
-        public Point GetLocation(Point p)
+        public System.Drawing.Point GetLocation(System.Drawing.Point p)
         {
             int x = p.X;
             int y = p.Y;
@@ -117,7 +120,7 @@ namespace EEditor
             y = Math.Max(0, y);
             x = Math.Min(x, BlockWidth - 1);
             y = Math.Min(y, BlockHeight - 1);
-            return new Point(x, y);
+            return new System.Drawing.Point(x, y);
         }
         public void Init(int width, int height)
         {
@@ -128,22 +131,22 @@ namespace EEditor
                 {
                     BlockWidth = width;
                     BlockHeight = height;
-                    Size = new Size(width, height);
+                    Size = new System.Drawing.Size(width, height);
                     Bitmap = new Bitmap(width, height);
                     for (int x = 0; x < width; ++x) for (int y = 0; y < height; ++y) Bitmap.SetPixel(x, y, Color.Black);
-                    Point relativePos = new Point(-25, -25);
-                    Location = new Point(Parent.ClientSize.Width - Width + relativePos.X, Parent.ClientSize.Height - Height + relativePos.Y);
+                    System.Drawing.Point relativePos = new System.Drawing.Point(-25, -25);
+                    Location = new System.Drawing.Point(Parent.ClientSize.Width - Width + relativePos.X, Parent.ClientSize.Height - Height + relativePos.Y);
                 });
             }
             else
             {
                 BlockWidth = width;
                 BlockHeight = height;
-                Size = new Size(width, height);
+                Size = new System.Drawing.Size(width, height);
                 Bitmap = new Bitmap(width, height);
                 for (int x = 0; x < width; ++x) for (int y = 0; y < height; ++y) Bitmap.SetPixel(x, y, Color.Black);
-                Point relativePos = new Point(-25, -25);
-                Location = new Point(Parent.ClientSize.Width - Width + relativePos.X, Parent.ClientSize.Height - Height + relativePos.Y);
+                System.Drawing.Point relativePos = new System.Drawing.Point(-25, -25);
+                Location = new System.Drawing.Point(Parent.ClientSize.Width - Width + relativePos.X, Parent.ClientSize.Height - Height + relativePos.Y);
             }
 
         }
@@ -166,10 +169,11 @@ namespace EEditor
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            
             base.OnPaint(e);
             e.Graphics.DrawImage(Bitmap, e.ClipRectangle, e.ClipRectangle, GraphicsUnit.Pixel);
+            
         }
-
         private void Minimap_Load(object sender, EventArgs e)
         {
         }
@@ -181,14 +185,15 @@ namespace EEditor
         private void Minimap_MouseMove(object sender, MouseEventArgs e)
         {
             
-            if (mouseDown && !draw)
+            if (mouseDown && !MainForm.PaintOnMinimap)
             {
-                MainForm.editArea.AutoScrollPosition = new Point((e.X * 16) - 768, (e.Y * 16) - 256);
+                MainForm.editArea.AutoScrollPosition = new System.Drawing.Point((e.X * 16) - 768, (e.Y * 16) - 256);
             }
-            if (draw)
+            if (mouseDown && MainForm.PaintOnMinimap)
             {
                 //SetPixel(e.X, e.Y, 9);
             }
+
         }
 
         private void Minimap_MouseDown(object sender, MouseEventArgs e)
@@ -203,24 +208,62 @@ namespace EEditor
 
         private void Minimap_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!draw) MainForm.editArea.AutoScrollPosition = new Point((e.X * 16) - 768, (e.Y * 16) - 256);
+            if (!draw) MainForm.editArea.AutoScrollPosition = new System.Drawing.Point((e.X * 16) - 768, (e.Y * 16) - 256);
         }
 
-        private void Minimap_KeyDown(object sender, KeyEventArgs e)
+        private protected void Minimap_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control || e.KeyCode == Keys.ControlKey)
+            /*if (e.Control || e.KeyCode == Keys.ControlKey)
             {
-                draw = true;
-            }
+                System.Drawing.Point point = new System.Drawing.Point();
+                switch (pos)
+                {
+                    case 0:
+                        pos = 0;
+                        //center
+                        //Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+                        point = new System.Drawing.Point((Parent.ClientSize.Width - BlockWidth - 25) / 2, Parent.ClientSize.Height - Height - 25);
+                        break;
+                    case 1:
+                        pos++;
+                        //left
+                         point = new System.Drawing.Point(((Parent.ClientSize.Width - BlockWidth) + 25) / Width, Parent.ClientSize.Height - Height - 25);
+                        break;
+                    case 2:
+                        pos++;
+                        //left - center
+                        point = new System.Drawing.Point(((Parent.ClientSize.Width - BlockWidth) + 25) / Width, (Parent.ClientSize.Height - BlockHeight - 25) / 2);
+                        break;
+                    case 3:
+                        pos++;
+                        //center - center
+                        point = new System.Drawing.Point(((Parent.ClientSize.Width - BlockWidth) - 25) / 2, (Parent.ClientSize.Height - BlockHeight - 25) / 2);
+                        break;
+                    case 4:
+                        pos++;
+                        //right - center
+                        point = new System.Drawing.Point(((Parent.ClientSize.Width - BlockWidth) - 25), (Parent.ClientSize.Height - BlockHeight - 25) / 2);
+                        break;
+                    case 5:
+                        pos++;
+                        //right - up
+                        point = new System.Drawing.Point(((Parent.ClientSize.Width - Width) - 25), (Parent.ClientSize.Height - BlockHeight + 25) % 2);
+                        break;
+                    case 6:
+                        pos = 0;
+                        //right
+                        point = new System.Drawing.Point(Parent.ClientSize.Width - Width - 25, Parent.ClientSize.Height - Height - 25);
+                        break;
+                }
+                Location = point;
+                //this.Invalidate(true);
+                //Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
+                this.Invalidate(true);
+
+            }*/
+            
 
         }
 
-        private protected void Minimap_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Control || e.KeyCode == Keys.ControlKey)
-            {
-                draw = false;
-            }
-        }
     }
 }
