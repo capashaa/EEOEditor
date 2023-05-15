@@ -638,6 +638,7 @@
     <None Include="Resources\logo.png" />
     <None Include="Resources\misc.png" />
     <None Include="Resources\minimap.png" />
+    <None Include="Resources\paint_minimap.png" />
     <Content Include="Resources\redo.png" />
     <None Include="Resources\rotate.png" />
     <None Include="Resources\settings.ico" />
