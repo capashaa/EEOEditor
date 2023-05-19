@@ -48,6 +48,9 @@ namespace EEditor
         public static string WODescription = "";
         public static bool WOMinimap = true;
         public static uint WOBackgroundColor = 0;
+        public static string WOCrewName = "";
+        public static string WOCrewID = "";
+        public static bool WOCampaign = false;
         private System.Timers.Timer timer = new System.Timers.Timer(1000);
         public static int[] foregroundBMI = new int[3000];
         public static int[] miscBMI = new int[3000];
@@ -4742,6 +4745,9 @@ namespace EEditor
                     WODescription = wd.description;
                     WOMinimap = wd.minimp;
                     userdata.useColor = wd.usecolor;
+                    WOCampaign = wd.campaign;
+                    WOCrewID = wd.crewid;
+                    WOCrewName = wd.crewname;
                     this.Text = $"({WOTitle}) [{WONickname}] ({editArea.Frames[0].Width}x{editArea.Frames[0].Height}) - EEOditor {this.ProductVersion}";
                     if (wd.usecolor) userdata.thisColor = wd.bgcolor;
                     else userdata.thisColor = Color.Transparent;

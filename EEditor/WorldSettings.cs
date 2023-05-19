@@ -21,6 +21,13 @@ namespace EEditor
         public bool usecolor { get; set; }
         public string description { get; set; }
         public bool minimp { get; set; }
+
+        public string crewname { get; set; }
+
+        public string crewid { get; set; }
+
+        public bool campaign { get; set; }
+
         public Color bgcolor { get; set; }
         public WorldSettings()
         {
@@ -31,8 +38,11 @@ namespace EEditor
         {
             title = string.IsNullOrEmpty(tbtitle.Text) ? "Untitled World" : tbtitle.Text;
             owner = string.IsNullOrEmpty(tbowner.Text) ? "player" : tbowner.Text.ToLower();
-            madeby = rbEEOffline.Checked ? "made offline" : "Created by EEOditor";
+            madeby = txtbOwnerID.Text;
             minimp = cbMinimap.Checked;
+            campaign = cbCampaign.Checked;
+            crewid = txtbCrewID.Text;
+            crewname = txtbCrewName.Text;
             description = string.IsNullOrEmpty(txtbDescr.Text) ? null : txtbDescr.Text;
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -73,9 +83,11 @@ namespace EEditor
             tbowner.Text = string.IsNullOrEmpty(MainForm.WONickname) ? "player" : MainForm.WONickname.ToLower();
             txtbDescr.Text = string.IsNullOrEmpty(MainForm.WODescription) ? "" : MainForm.WODescription;
             tbtitle.Select(tbtitle.TextLength, tbtitle.TextLength - 1);
-            if (MainForm.WOMade == "made offline") rbEEOffline.Checked = true;
-            else rbEEOEditor.Checked = true;
-            if (!MainForm.WOMinimap) cbMinimap.Checked = false;
+            cbMinimap.Checked = MainForm.WOMinimap;
+            cbCampaign.Checked = MainForm.WOCampaign;
+            txtbCrewID.Text = MainForm.WOCrewID;
+            txtbCrewName.Text = MainForm.WOCrewName;
+            txtbOwnerID.Text = MainForm.WOMade;
 
             if (MainForm.userdata.useColor)
             {
@@ -129,6 +141,32 @@ namespace EEditor
         private void cbMinimap_CheckedChanged(object sender, EventArgs e)
         {
             MainForm.WOMinimap = cbMinimap.Checked;
+        }
+
+        private void cbCampaign_CheckedChanged(object sender, EventArgs e)
+        {
+            MainForm.WOCampaign = cbCampaign.Checked;
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            cbMinimap.Checked = true;
+            cbCampaign.Checked = false;
+            txtbCrewID.Text = "";
+            txtbCrewName.Text = "";
+            txtbOwnerID.Text = "made offline";
+            tbtitle.Text = "Untitled World";
+            tbowner.Text = "player";
+            txtbDescr.Text = "";
+            usecolor = false;
+            bgcolor = Color.Transparent;
+            Bitmap bmp = new Bitmap(24, 24);
+            using (Graphics gr = Graphics.FromImage(bmp))
+            {
+                gr.Clear(bgcolor);
+                gr.DrawRectangle(new Pen(MainForm.themecolors.foreground), new Rectangle(0, 0, 23, 23));
+            }
+            pictureBox1.Image = bmp;
         }
     }
 }
