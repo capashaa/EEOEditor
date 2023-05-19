@@ -107,6 +107,9 @@ namespace EEditor
             savelvl.OwnerName = MainForm.WONickname;
             savelvl.OwnerID = MainForm.WOMade;
             savelvl.Minimap = MainForm.WOMinimap;
+            savelvl.CrewID = MainForm.WOCrewID;
+            savelvl.CrewName = MainForm.WOCrewName;
+            savelvl.Campaign = MainForm.WOCampaign;
             if (!string.IsNullOrEmpty(MainForm.WODescription)) savelvl.Description = MainForm.WODescription;
             if (MainForm.userdata.useColor) savelvl.BackgroundColor = ColorToUInt(MainForm.userdata.thisColor);
             for (int y = 0; y < Height; ++y)
@@ -523,9 +526,11 @@ namespace EEditor
                 Level lvl = Level.Open(fs);
                 int totalblock = 0;
                 Frame f = new Frame(lvl.Width, lvl.Height);
+                string owner = lvl.CrewName == "" ? lvl.OwnerName : lvl.CrewName;
+                string ownerid = lvl.CrewName == "" ? lvl.OwnerID : lvl.CrewID;
                 f.levelname = lvl.WorldName;
-                f.nickname = lvl.OwnerName;
-                f.owner = lvl.OwnerID;
+                f.nickname = owner;
+                f.owner = ownerid;
                 if (lvl.BackgroundColor != 0)
                 {
                     MainForm.userdata.useColor = true;
@@ -542,6 +547,9 @@ namespace EEditor
                 MainForm.WODescription = lvl.Description;
                 MainForm.WOMinimap = lvl.Minimap;
                 MainForm.WOBackgroundColor = lvl.BackgroundColor;
+                MainForm.WOCrewID = lvl.CrewID;
+                MainForm.WOCrewName = lvl.CrewName;
+                MainForm.WOCampaign = lvl.Campaign;
                 if (lvl.Width <= 637 && lvl.Height <= 460 || lvl.Width <= 460 && lvl.Height <= 647)
                 {
                     for (int x = 0; x < lvl.Width; ++x)
