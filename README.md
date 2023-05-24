@@ -1,6 +1,11 @@
 ## EEOditor - Everybody Edits Offline Editor
    
-Welcome to the EEOditor GitHub page! Here we host sourcecode and latest version of EEOditor.
+Welcome to the EEOditor GitHub page! Here we host sourcecode and latest version of EEOditor.  
+
+## **About EEOditor**
+
+EEOditor is an offline Everybody Edits level editor, made to simplify level creation and manipulation.  
+Originally built by Cyph1e, then continued by capasha and robotkotkoer.  
 
 ## **Installation/Download**
 You can Download this tool at [Releases](https://github.com/capashaa/EEOEditor/releases).  
