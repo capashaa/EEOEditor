@@ -1,3 +1,5 @@
+# Bye
+
 ## EEOditor - Everybody Edits Offline Editor
    
 Welcome to the EEOditor GitHub page! Here we host sourcecode and latest version of EEOditor.
