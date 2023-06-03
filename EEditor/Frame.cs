@@ -170,8 +170,27 @@ namespace EEditor
                     }
                 }
             }
-            savelvl.Save(file);
+            if (file == null)
+            {
+                string fixedtitle = RemoveInvalidChars(MainForm.WOTitle.Replace(" ", "_"));
+                string fixedname = RemoveInvalidChars(MainForm.WONickname.Replace(" ", "_"));
+                Console.WriteLine(fixedname);
+                string path = $"{Directory.GetCurrentDirectory()}\\{fixedtitle}_-_{fixedname}.eelvl";
+                Console.WriteLine(path);
+                FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+                savelvl.Save(fs);
+                fs.Close();
+            }
+            else
+            {
+                savelvl.Save(file);
+                file.Dispose();
+            }
 
+        }
+        public string RemoveInvalidChars(string filename)
+        {
+            return string.Concat(filename.Split(Path.GetInvalidFileNameChars()));
         }
         public void Save(System.IO.BinaryWriter writer)
         {

@@ -3211,7 +3211,7 @@ namespace EEditor
         }
 
         //Save
-        private void saveWorldToolStripMenuItem_Click(object sender, EventArgs e)
+        /*private void saveWorldToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetDummy();
             try
@@ -3237,7 +3237,7 @@ namespace EEditor
             {
                 MessageBox.Show("An error has occured: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }*/
 
         private void worldAsImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -4138,7 +4138,8 @@ namespace EEditor
                     break;
 
                 case 2:
-                    saveDropButton.ShowDropDown();
+                    tsmSave.PerformClick();
+                    //saveDropButton.ShowDropDown();
                     break;
 
                 case 3:
@@ -4561,30 +4562,7 @@ namespace EEditor
 
         private void EelvlToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SetDummy();
-            try
-            {
-                SaveFileDialog ofd = new SaveFileDialog()
-                {
-                    Title = "Select a file to save to",
-                    DefaultExt = "eelvl",
-                    Filter = "EverybodyEdits Offline level (*.eelvl)|*.eelvl",
-                    AddExtension = true,
-                    RestoreDirectory = true
-                };
 
-                if (ofd.ShowDialog() != DialogResult.OK) return;
-                string path = ofd.FileName;
-
-                FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
-                editArea.CurFrame.SaveLVL(fs);
-                fs.Close();
-                ofd.Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error has occured: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
         private void checkUpdate()
         {
@@ -4821,6 +4799,47 @@ namespace EEditor
             else
             {
                 PaintOnMinimap = false;
+            }
+        }
+
+        private void tsmSaveAs_Click(object sender, EventArgs e)
+        {
+            SetDummy();
+            try
+            {
+                SaveFileDialog ofd = new SaveFileDialog()
+                {
+                    Title = "Select a file to save to",
+                    DefaultExt = "eelvl",
+                    Filter = "EverybodyEdits Offline level (*.eelvl)|*.eelvl",
+                    AddExtension = true,
+                    RestoreDirectory = true
+                };
+
+                if (ofd.ShowDialog() != DialogResult.OK) return;
+                string path = ofd.FileName;
+
+                FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+                editArea.CurFrame.SaveLVL(fs);
+                fs.Close();
+                ofd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error has occured: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsmSave_Click(object sender, EventArgs e)
+        {
+            SetDummy();
+            try
+            {
+                editArea.CurFrame.SaveLVL(null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error has occured: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
