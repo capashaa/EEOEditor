@@ -466,6 +466,8 @@ namespace EEditor
             //checkUpdate();
             loadBlockPicker();
             //updateTheme();
+
+            //flowLayoutPanel2.AutoScrollMinSize = new Size(100, 60);
             MainForm.editArea.Focus();
         }
 
@@ -474,7 +476,6 @@ namespace EEditor
         {
             editArea.Init(25, 25);
         }
-
         public void updateTheme()
         {
             if (userdata.darkTheme)
@@ -1008,12 +1009,12 @@ namespace EEditor
                 }
                 else
                 {
-                    userdata.lastSelectedBlockbar = 4;
+                    userdata.lastSelectedBlockbar = 0;
                     flowLayoutPanel2.Visible = false;
                     flowLayoutPanel3.Visible = false;
                     flowLayoutPanel4.Visible = false;
                     flowLayoutPanel5.Visible = false;
-                    flowLayoutPanel6.Visible = true;
+                    flowLayoutPanel6.Visible = false;
 
                     showBlocksButton.Checked = false;
                     showActionsButton.Checked = false;
@@ -2893,6 +2894,8 @@ namespace EEditor
             {
                 InsertImageForm.Background.Clear();
                 InsertImageForm.Blocks.Clear();
+                MainForm.userdata.useColor = false;
+                MainForm.userdata.thisColor = Color.Transparent;
                 MainForm.editArea.Back = null;
                 MainForm.editArea.Back1 = null;
                 rebuildGUI(true);
