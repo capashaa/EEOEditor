@@ -59,7 +59,7 @@ namespace EEditor
                 SizeHeight = Convert.ToInt32(nUHeight.Value);
                 MainForm.WONickname = name.ToLower();
                 MainForm.WOTitle = title;
-                MainForm.WOMade = rbEEOffline.Checked ? "made offline" : "Created by EEOditor";
+                MainForm.WOMade = "made offline";
                 #endregion
                 DialogResult = DialogResult.OK;
                 Close();
