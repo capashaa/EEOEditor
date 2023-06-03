@@ -37,9 +37,6 @@
             this.lWidth = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.gbWorldOptions = new System.Windows.Forms.GroupBox();
-            this.rbEEOffline = new System.Windows.Forms.RadioButton();
-            this.rbEEOEditor = new System.Windows.Forms.RadioButton();
-            this.lblMade = new System.Windows.Forms.Label();
             this.tbowner = new System.Windows.Forms.TextBox();
             this.tbtitle = new System.Windows.Forms.TextBox();
             this.lname = new System.Windows.Forms.Label();
@@ -57,7 +54,7 @@
             this.groupBox1.Controls.Add(this.lHeight);
             this.groupBox1.Controls.Add(this.nUWidth);
             this.groupBox1.Controls.Add(this.lWidth);
-            this.groupBox1.Location = new System.Drawing.Point(12, 153);
+            this.groupBox1.Location = new System.Drawing.Point(12, 131);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(231, 85);
             this.groupBox1.TabIndex = 6;
@@ -140,7 +137,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(68, 244);
+            this.button1.Location = new System.Drawing.Point(68, 222);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 26);
             this.button1.TabIndex = 7;
@@ -150,50 +147,16 @@
             // 
             // gbWorldOptions
             // 
-            this.gbWorldOptions.Controls.Add(this.rbEEOffline);
-            this.gbWorldOptions.Controls.Add(this.rbEEOEditor);
-            this.gbWorldOptions.Controls.Add(this.lblMade);
             this.gbWorldOptions.Controls.Add(this.tbowner);
             this.gbWorldOptions.Controls.Add(this.tbtitle);
             this.gbWorldOptions.Controls.Add(this.lname);
             this.gbWorldOptions.Controls.Add(this.ltitle);
             this.gbWorldOptions.Location = new System.Drawing.Point(12, 8);
             this.gbWorldOptions.Name = "gbWorldOptions";
-            this.gbWorldOptions.Size = new System.Drawing.Size(231, 139);
+            this.gbWorldOptions.Size = new System.Drawing.Size(231, 117);
             this.gbWorldOptions.TabIndex = 32;
             this.gbWorldOptions.TabStop = false;
             this.gbWorldOptions.Text = "World Options";
-            // 
-            // rbEEOffline
-            // 
-            this.rbEEOffline.AutoSize = true;
-            this.rbEEOffline.Checked = true;
-            this.rbEEOffline.Location = new System.Drawing.Point(81, 107);
-            this.rbEEOffline.Name = "rbEEOffline";
-            this.rbEEOffline.Size = new System.Drawing.Size(72, 17);
-            this.rbEEOffline.TabIndex = 6;
-            this.rbEEOffline.TabStop = true;
-            this.rbEEOffline.Text = "EE Offline";
-            this.rbEEOffline.UseVisualStyleBackColor = true;
-            // 
-            // rbEEOEditor
-            // 
-            this.rbEEOEditor.AutoSize = true;
-            this.rbEEOEditor.Location = new System.Drawing.Point(158, 107);
-            this.rbEEOEditor.Name = "rbEEOEditor";
-            this.rbEEOEditor.Size = new System.Drawing.Size(67, 17);
-            this.rbEEOEditor.TabIndex = 5;
-            this.rbEEOEditor.Text = "EEOditor";
-            this.rbEEOEditor.UseVisualStyleBackColor = true;
-            // 
-            // lblMade
-            // 
-            this.lblMade.AutoSize = true;
-            this.lblMade.Location = new System.Drawing.Point(13, 109);
-            this.lblMade.Name = "lblMade";
-            this.lblMade.Size = new System.Drawing.Size(62, 13);
-            this.lblMade.TabIndex = 4;
-            this.lblMade.Text = "Made With:";
             // 
             // tbowner
             // 
@@ -233,7 +196,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(252, 277);
+            this.ClientSize = new System.Drawing.Size(252, 262);
             this.Controls.Add(this.gbWorldOptions);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
@@ -267,8 +230,5 @@
         private System.Windows.Forms.Label lname;
         private System.Windows.Forms.Label ltitle;
         private System.Windows.Forms.Button btnSizeList;
-        private System.Windows.Forms.Label lblMade;
-        private System.Windows.Forms.RadioButton rbEEOffline;
-        private System.Windows.Forms.RadioButton rbEEOEditor;
     }
 }
