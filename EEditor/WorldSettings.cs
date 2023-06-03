@@ -102,9 +102,12 @@ namespace EEditor
             else
             {
                 Bitmap bmp = new Bitmap(24, 24);
+                Console.WriteLine(Properties.Resources.cross.Width);
                 using (Graphics gr = Graphics.FromImage(bmp))
                 {
                     gr.Clear(Color.Transparent);
+
+                    gr.DrawImage(Properties.Resources.cross, 5, 5);
                     gr.DrawRectangle(new Pen(MainForm.themecolors.foreground), new Rectangle(0, 0, 23, 23));
                 }
                 pictureBox1.Image = bmp;
