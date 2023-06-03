@@ -12,6 +12,7 @@ using System.Threading;
 using static System.Net.Mime.MediaTypeNames;
 using System.Runtime.ConstrainedExecution;
 using System.Windows;
+using SharpCompress.Writers;
 
 namespace EEditor
 {
@@ -179,6 +180,7 @@ namespace EEditor
             writer.Write(Height);
             writer.Write(MainForm.WOTitle);
             writer.Write(MainForm.WONickname);
+            writer.Write(MainForm.userdata.useColor ? ColorToUInt(MainForm.userdata.thisColor) : 0);
             for (int y = 0; y < Height; ++y)
                 for (int x = 0; x < Width; ++x)
                 {
@@ -660,20 +662,8 @@ namespace EEditor
         }
         public static Frame Load(System.IO.BinaryReader reader, int num)
         {
-            /*
-             * Loading new world anti-hack (not done)
-             * reader.Close();
-            bool[] bol = detectWorlds(file);
-            int missed = 0;
-            int got = 0;
-            for (int i = 0;i < bol.Length;i++)
-            {
-                Console.WriteLine(bol[i]);
-                if (bol[i]) got += 1;
-                else missed += 1;
-            }
-            Console.WriteLine(missed + " " + got);
-            */
+
+            //Version 4.0
             if (num == 8)
             {
 
@@ -683,12 +673,24 @@ namespace EEditor
                 Frame f = new Frame(width, height);
                 string title = reader.ReadString();
                 string owner = reader.ReadString();
-
+                uint bgcolor = reader.ReadUInt32();
+                Console.WriteLine(bgcolor);
                 MainForm.WOTitle = title;
                 MainForm.WONickname = owner;
-
+                MainForm.WOBackgroundColor = bgcolor;
                 f.nickname = owner;
                 f.levelname = title;
+                f.backgroundColor = bgcolor;
+                if (bgcolor != 0)
+                {
+                    MainForm.userdata.useColor = true;
+                    MainForm.userdata.thisColor = UIntToColor(bgcolor);
+                }
+                else
+                {
+                    MainForm.userdata.useColor = false;
+                    MainForm.userdata.thisColor = Color.Transparent;
+                }
                 for (int y = 0; y < height; ++y)
                 {
                     for (int x = 0; x < width; ++x)
