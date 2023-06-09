@@ -9,7 +9,8 @@ Originally built by Cyph1e, then continued by capasha and robotkotkoer.
 
 ## **Installation/Download**
 You can Download this tool at [Releases](https://github.com/capashaa/EEOEditor/releases).  
-Select the correct archive: EEOditor_v.x.x.zip. vx.x.x stands for version number. 
+Select the correct archive: EEOditor_v.x.x.zip. x.x.x stands for version number.    
+If you don't find this, click on Assets and collapse the menu.   
 
 Extract the archive. Then Run EEOditor.exe. 
 Files will be placed in the folder such as settings.json, and a folder named blueprints if you never have used this tool before.
