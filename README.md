@@ -27,7 +27,7 @@ You need to install [.NET Framework 4.8 Runtime](https://dotnet.microsoft.com/en
 
 ## Other
 
-Are you new or just want to understand how the interface works? [Read the interface summary]([https://github.com/capashaa/EEOEditor/wiki](https://github.com/capashaa/EEOEditor/wiki/interface-summary).  
+Are you new or just want to understand how the interface works? [Read the Interface summary](https://github.com/capashaa/EEOEditor/wiki/interface-summary).  
 
 Have a feature to request or bug to report or just want to ask questions? Use the [EEO Discord](https://discord.gg/V5maATbSgc), the [Forums](https://forums.everybodyedits.com/viewtopic.php?id=47253&p=3) or issues on GitHub.   
 
