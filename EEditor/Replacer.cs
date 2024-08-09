@@ -21,7 +21,6 @@ namespace EEditor
         private int[,] lastBlock;
         private int portalRotationFind = 0;
         private int portalRotationRepl = 0;
-        private bool spikeSpecial = false;
         Bitmap bmp = new Bitmap(1, 1);
         Bitmap img1;
         public Replacer(MainForm mainForm)
@@ -46,7 +45,7 @@ namespace EEditor
             PortalINVRadioButton.Image = MainForm.miscBMD.Clone(new Rectangle(112 * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
             WorldPortalRadioButton.Image = MainForm.miscBMD.Clone(new Rectangle(33 * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
             SignRadioButton.Image = MainForm.miscBMD.Clone(new Rectangle(255 * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
-
+            LabelRadioButton.Image = MainForm.decosBMD.Clone(new Rectangle(176 * 16,0,16,16), MainForm.decosBMD.PixelFormat);
             if (ToolPen.rotation.ContainsKey(MainForm.editArea.Tool.PenID))
             {
                 if (bdata.getRotation(MainForm.editArea.Tool.PenID, ToolPen.rotation[MainForm.editArea.Tool.PenID]) != null)
@@ -76,7 +75,7 @@ namespace EEditor
             tp.SetToolTip(button8, "Removes all red rectangles around blocks");
             tp.SetToolTip(button9, "Finds all blocks you don't own and replaces them with block ID " + numericUpDown2.Value);
             tp.SetToolTip(rotateIcon1, "Rotation or count"); tp.SetToolTip(rotateIcon2, "Rotation or count"); tp.SetToolTip(findRotate, "Rotation or count"); tp.SetToolTip(replaceRotate, "Rotation or count");
-
+            tp.SetToolTip(rbSpikes, "Replace any rotation of spikes to another color.");
             tp.SetToolTip(toolStripContainer1.ContentPanel, "Left click: insert ID to find box\nRight click: insert ID to replace box"); // Would be more useful if the tooltip was added to single blocks
             tp.SetToolTip(ClearBgsButton, "Clear background blocks that is behind normal blocks");
 
@@ -119,6 +118,29 @@ namespace EEditor
                                 cnt.ForeColor = MainForm.themecolors.foreground;
                                 cnt.BackColor = MainForm.themecolors.accent;
                             }
+                            if (cnt.GetType() == typeof(PictureBox))
+                            {
+                                if (cnt.Name.StartsWith("rotateIcon"))
+                                {
+                                    Bitmap bmp = new Bitmap(((PictureBox)cnt).Image);
+                                    Bitmap bmp1 = new Bitmap(((PictureBox)cnt).Image.Width, ((PictureBox)cnt).Image.Height);
+                                    for (int x = 0; x < ((PictureBox)cnt).Image.Width; x++)
+                                    {
+                                        for (int y = 0; y < ((PictureBox)cnt).Image.Height; y++)
+                                        {
+                                            if (bmp.GetPixel(x, y).A > 80)
+                                            {
+                                                bmp1.SetPixel(x, y, MainForm.themecolors.imageColors);
+                                            }
+                                            else
+                                            {
+                                                bmp1.SetPixel(x, y, Color.Transparent);
+                                            }
+                                        }
+                                    }
+                                ((PictureBox)cnt).Image = bmp1;
+                                }
+                            }
                             if (cnt.GetType() == typeof(GroupBox))
                             {
                                 cnt.ForeColor = MainForm.themecolors.foreground;
@@ -130,6 +152,8 @@ namespace EEditor
                                         cn.ForeColor = MainForm.themecolors.foreground;
                                         cn.BackColor = MainForm.themecolors.accent;
                                         ((Button)cn).FlatStyle = FlatStyle.Flat;
+                                        
+
                                     }
                                     if (cn.GetType() == typeof(TextBox))
                                     {
@@ -152,6 +176,26 @@ namespace EEditor
                             cntrl.ForeColor = MainForm.themecolors.foreground;
                             cntrl.BackColor = MainForm.themecolors.accent;
                             ((Button)cntrl).FlatStyle = FlatStyle.Flat;
+                            if (cntrl.Name == "button1" || cntrl.Name == "button3" || cntrl.Name == "button5" || cntrl.Name == "button4")
+                            {
+                                Bitmap bmp = new Bitmap(((Button)cntrl).Image);
+                                Bitmap bmp1 = new Bitmap(((Button)cntrl).Image.Width, ((Button)cntrl).Image.Height);
+                                for (int x = 0; x < ((Button)cntrl).Image.Width; x++)
+                                {
+                                    for (int y = 0; y < ((Button)cntrl).Image.Height; y++)
+                                    {
+                                        if (bmp.GetPixel(x, y).A > 80)
+                                        {
+                                            bmp1.SetPixel(x, y, MainForm.themecolors.imageColors);
+                                        }
+                                        else
+                                        {
+                                            bmp1.SetPixel(x, y, Color.Transparent);
+                                        }
+                                    }
+                                }
+                            ((Button)cntrl).Image = bmp1;
+                            }
                         }
                         if (cntrl.GetType() == typeof(TextBox))
                         {
@@ -1068,16 +1112,14 @@ namespace EEditor
             if (PortalRadioButton.Checked)
             {
                 portalRotationFind += 1;
+                if (portalRotationFind == 4) portalRotationFind = 0;
                 PortalRotFind.Image = bdata.getRotation(242, portalRotationFind);
-                if (portalRotationFind == 3) portalRotationFind = 0;
-
             }
             if (PortalINVRadioButton.Checked)
             {
                 portalRotationFind += 1;
+                if (portalRotationFind == 4) portalRotationFind = 0;
                 PortalRotFind.Image = bdata.getRotation(381, portalRotationFind);
-
-                if (portalRotationFind == 3) portalRotationFind = 0;
             }
         }
 
@@ -1086,17 +1128,15 @@ namespace EEditor
             if (PortalRadioButton.Checked)
             {
                 portalRotationRepl += 1;
+                if (portalRotationRepl == 4) portalRotationRepl = 0;
                 PortalRotRepl.Image = bdata.getRotation(242, portalRotationRepl);
-
-                if (portalRotationRepl == 3) portalRotationRepl = 0;
 
             }
             if (PortalINVRadioButton.Checked)
             {
                 portalRotationRepl += 1;
+                if (portalRotationRepl == 4) portalRotationRepl = 0;
                 PortalRotRepl.Image = bdata.getRotation(381, portalRotationRepl);
-
-                if (portalRotationRepl == 3) portalRotationRepl = 0;
             }
         }
 
@@ -1117,6 +1157,19 @@ namespace EEditor
         private void rbSpikes_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void LabelRadioButton_Click(object sender, EventArgs e)
+        {
+            PortalRadioButton.Checked = false;
+            PortalINVRadioButton.Checked = false;
+            SignRadioButton.Checked = false;
+            WorldPortalRadioButton.Checked = false;
+            LabelRadioButton.Checked = true;
+            NormalRadioButton.Checked = false;
+            rbSpikes.Checked = false;
+            findRotate.Enabled = true;
+            replaceRotate.Enabled = true;
         }
     }
 }

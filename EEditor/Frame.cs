@@ -176,13 +176,14 @@ namespace EEditor
                 string fixedname = RemoveInvalidChars(MainForm.WONickname.Replace(" ", "_"));
                 Console.WriteLine(fixedname);
                 string path = $"{Directory.GetCurrentDirectory()}\\{fixedtitle}_-_{fixedname}.eelvl";
-                Console.WriteLine(path);
+                if (File.Exists(path)) File.Delete(path);
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 savelvl.Save(fs);
                 fs.Close();
             }
             else
             {
+                if (File.Exists(file.Name)) File.Delete(file.Name);
                 savelvl.Save(file);
                 file.Dispose();
             }
@@ -784,7 +785,7 @@ namespace EEditor
                                 f.BlockData1[y, x] = b;
                                 f.BlockData2[y, x] = c;
                             }
-                            catch (Exception ex) { Console.WriteLine("didn't exists"); }
+                            catch (Exception) { Console.WriteLine("didn't exists"); }
                         }
                     }
                 return f;
@@ -1093,7 +1094,6 @@ namespace EEditor
             }*/
             else
             {
-                int jk = 0;
                 int height = 200;
                 int width = 200;
                 int ind = 0;
@@ -1156,9 +1156,6 @@ namespace EEditor
         {
             var packets = SPTReader.Deserialize(File.ReadAllBytes(filename));
             var binary_deserializer = new BinaryDeserializer();
-
-            int width = 200;
-            int height = 200;
 
 
             var messages_deserialized = 0;

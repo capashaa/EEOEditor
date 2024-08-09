@@ -64,6 +64,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.rbSpikes = new System.Windows.Forms.RadioButton();
             this.NormalRadioButton = new System.Windows.Forms.RadioButton();
             this.RotationPictureBox2 = new System.Windows.Forms.PictureBox();
             this.RotationPictureBox1 = new System.Windows.Forms.PictureBox();
@@ -93,7 +94,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.WorldPortalRadioButton = new System.Windows.Forms.RadioButton();
             this.SignRadioButton = new System.Windows.Forms.RadioButton();
-            this.rbSpikes = new System.Windows.Forms.RadioButton();
+            this.LabelRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rotateIcon2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rotateIcon1)).BeginInit();
@@ -519,6 +520,19 @@
             this.tabPage1.Text = "Normal";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // rbSpikes
+            // 
+            this.rbSpikes.AutoSize = true;
+            this.rbSpikes.Location = new System.Drawing.Point(75, 98);
+            this.rbSpikes.Name = "rbSpikes";
+            this.rbSpikes.Size = new System.Drawing.Size(90, 17);
+            this.rbSpikes.TabIndex = 27;
+            this.rbSpikes.TabStop = true;
+            this.rbSpikes.Text = "Spike Special";
+            this.rbSpikes.UseVisualStyleBackColor = true;
+            this.rbSpikes.CheckedChanged += new System.EventHandler(this.rbSpikes_CheckedChanged);
+            this.rbSpikes.Click += new System.EventHandler(this.rbSpikes_Click);
+            // 
             // NormalRadioButton
             // 
             this.NormalRadioButton.AutoSize = true;
@@ -763,6 +777,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.LabelRadioButton);
             this.tabPage3.Controls.Add(this.label16);
             this.tabPage3.Controls.Add(this.label17);
             this.tabPage3.Controls.Add(this.ReplaceTextBox);
@@ -830,7 +845,7 @@
             this.WorldPortalRadioButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Window;
             this.WorldPortalRadioButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.WorldPortalRadioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WorldPortalRadioButton.Location = new System.Drawing.Point(153, 101);
+            this.WorldPortalRadioButton.Location = new System.Drawing.Point(109, 101);
             this.WorldPortalRadioButton.Name = "WorldPortalRadioButton";
             this.WorldPortalRadioButton.Size = new System.Drawing.Size(29, 23);
             this.WorldPortalRadioButton.TabIndex = 43;
@@ -854,18 +869,21 @@
             this.SignRadioButton.UseVisualStyleBackColor = true;
             this.SignRadioButton.Click += new System.EventHandler(this.SignRadioButton_Click);
             // 
-            // rbSpikes
+            // LabelRadioButton
             // 
-            this.rbSpikes.AutoSize = true;
-            this.rbSpikes.Location = new System.Drawing.Point(75, 98);
-            this.rbSpikes.Name = "rbSpikes";
-            this.rbSpikes.Size = new System.Drawing.Size(90, 17);
-            this.rbSpikes.TabIndex = 27;
-            this.rbSpikes.TabStop = true;
-            this.rbSpikes.Text = "Spike Special";
-            this.rbSpikes.UseVisualStyleBackColor = true;
-            this.rbSpikes.CheckedChanged += new System.EventHandler(this.rbSpikes_CheckedChanged);
-            this.rbSpikes.Click += new System.EventHandler(this.rbSpikes_Click);
+            this.LabelRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.LabelRadioButton.FlatAppearance.BorderSize = 0;
+            this.LabelRadioButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.LabelRadioButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Window;
+            this.LabelRadioButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.LabelRadioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LabelRadioButton.Location = new System.Drawing.Point(144, 101);
+            this.LabelRadioButton.Name = "LabelRadioButton";
+            this.LabelRadioButton.Size = new System.Drawing.Size(29, 23);
+            this.LabelRadioButton.TabIndex = 49;
+            this.LabelRadioButton.TabStop = true;
+            this.LabelRadioButton.UseVisualStyleBackColor = true;
+            this.LabelRadioButton.Click += new System.EventHandler(this.LabelRadioButton_Click);
             // 
             // Replacer
             // 
@@ -987,5 +1005,6 @@
         private System.Windows.Forms.Button ClearBgsBlacklistButton;
         private System.Windows.Forms.CheckBox ReplaceUnknownCheckBox;
         private System.Windows.Forms.RadioButton rbSpikes;
+        private System.Windows.Forms.RadioButton LabelRadioButton;
     }
 }

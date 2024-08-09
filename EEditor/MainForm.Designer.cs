@@ -85,7 +85,7 @@ namespace EEditor
             this.circleButton = new System.Windows.Forms.ToolStripMenuItem();
             this.filledCircleButton = new System.Windows.Forms.ToolStripMenuItem();
             this.lineButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.mazeGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mazeGenerator = new System.Windows.Forms.ToolStripMenuItem();
             this.insertDropButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.imageButton = new System.Windows.Forms.ToolStripMenuItem();
             this.textButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -395,7 +395,7 @@ namespace EEditor
             this.fileToolStrip.Location = new System.Drawing.Point(0, 0);
             this.fileToolStrip.Name = "fileToolStrip";
             this.fileToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.fileToolStrip.Size = new System.Drawing.Size(127, 27);
+            this.fileToolStrip.Size = new System.Drawing.Size(96, 27);
             this.fileToolStrip.TabIndex = 7;
             // 
             // newWorldButton
@@ -567,33 +567,33 @@ namespace EEditor
             // tsmSave
             // 
             this.tsmSave.Name = "tsmSave";
-            this.tsmSave.Size = new System.Drawing.Size(180, 22);
+            this.tsmSave.Size = new System.Drawing.Size(172, 22);
             this.tsmSave.Text = "Save";
             this.tsmSave.Click += new System.EventHandler(this.tsmSave_Click);
             // 
             // tsmSaveAs
             // 
             this.tsmSaveAs.Name = "tsmSaveAs";
-            this.tsmSaveAs.Size = new System.Drawing.Size(180, 22);
+            this.tsmSaveAs.Size = new System.Drawing.Size(172, 22);
             this.tsmSaveAs.Text = "Save As..";
             this.tsmSaveAs.Click += new System.EventHandler(this.tsmSaveAs_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
             // 
             // worldAsImageToolStripMenuItem
             // 
             this.worldAsImageToolStripMenuItem.Name = "worldAsImageToolStripMenuItem";
-            this.worldAsImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.worldAsImageToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.worldAsImageToolStripMenuItem.Text = "World as image";
             this.worldAsImageToolStripMenuItem.Click += new System.EventHandler(this.worldAsImageToolStripMenuItem_Click);
             // 
             // minimapAsImageToolStripMenuItem
             // 
             this.minimapAsImageToolStripMenuItem.Name = "minimapAsImageToolStripMenuItem";
-            this.minimapAsImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.minimapAsImageToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.minimapAsImageToolStripMenuItem.Text = "Minimap as image";
             this.minimapAsImageToolStripMenuItem.Click += new System.EventHandler(this.minimapAsImageToolStripMenuItem_Click);
             // 
@@ -611,10 +611,10 @@ namespace EEditor
             this.insertDropButton,
             this.toolStripSeparator8,
             this.replaceButton});
-            this.toolToolStrip.Location = new System.Drawing.Point(127, 0);
+            this.toolToolStrip.Location = new System.Drawing.Point(96, 0);
             this.toolToolStrip.Name = "toolToolStrip";
             this.toolToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.toolToolStrip.Size = new System.Drawing.Size(204, 27);
+            this.toolToolStrip.Size = new System.Drawing.Size(235, 27);
             this.toolToolStrip.TabIndex = 3;
             // 
             // penButton
@@ -679,7 +679,7 @@ namespace EEditor
             this.circleButton,
             this.filledCircleButton,
             this.lineButton,
-            this.mazeGeneratorToolStripMenuItem});
+            this.mazeGenerator});
             this.shapesDropButton.Image = global::EEditor.Properties.Resources.shapes;
             this.shapesDropButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.shapesDropButton.Name = "shapesDropButton";
@@ -692,7 +692,7 @@ namespace EEditor
             this.rectangleButton.Image = global::EEditor.Properties.Resources.rectangle;
             this.rectangleButton.Name = "rectangleButton";
             this.rectangleButton.ShortcutKeyDisplayString = ",";
-            this.rectangleButton.Size = new System.Drawing.Size(205, 22);
+            this.rectangleButton.Size = new System.Drawing.Size(209, 26);
             this.rectangleButton.Text = "Rectangle";
             this.rectangleButton.Click += new System.EventHandler(this.rectangleButton_Click);
             // 
@@ -701,7 +701,7 @@ namespace EEditor
             this.filledRectangleButton.Image = global::EEditor.Properties.Resources.rectanglefill;
             this.filledRectangleButton.Name = "filledRectangleButton";
             this.filledRectangleButton.ShortcutKeyDisplayString = "CTRL + ,";
-            this.filledRectangleButton.Size = new System.Drawing.Size(205, 22);
+            this.filledRectangleButton.Size = new System.Drawing.Size(209, 26);
             this.filledRectangleButton.Text = "Filled rectangle";
             this.filledRectangleButton.Click += new System.EventHandler(this.filledRectangleButton_Click);
             // 
@@ -710,7 +710,7 @@ namespace EEditor
             this.circleButton.Image = global::EEditor.Properties.Resources.circle;
             this.circleButton.Name = "circleButton";
             this.circleButton.ShortcutKeyDisplayString = ".";
-            this.circleButton.Size = new System.Drawing.Size(205, 22);
+            this.circleButton.Size = new System.Drawing.Size(209, 26);
             this.circleButton.Text = "Circle";
             this.circleButton.Click += new System.EventHandler(this.circleButton_Click);
             // 
@@ -719,7 +719,7 @@ namespace EEditor
             this.filledCircleButton.Image = global::EEditor.Properties.Resources.circlefill;
             this.filledCircleButton.Name = "filledCircleButton";
             this.filledCircleButton.ShortcutKeyDisplayString = "CTRL + .";
-            this.filledCircleButton.Size = new System.Drawing.Size(205, 22);
+            this.filledCircleButton.Size = new System.Drawing.Size(209, 26);
             this.filledCircleButton.Text = "Filled circle";
             this.filledCircleButton.Click += new System.EventHandler(this.filledCircleButton_Click);
             // 
@@ -728,17 +728,17 @@ namespace EEditor
             this.lineButton.Image = global::EEditor.Properties.Resources.line;
             this.lineButton.Name = "lineButton";
             this.lineButton.ShortcutKeyDisplayString = "-";
-            this.lineButton.Size = new System.Drawing.Size(205, 22);
+            this.lineButton.Size = new System.Drawing.Size(209, 26);
             this.lineButton.Text = "Line";
             this.lineButton.Click += new System.EventHandler(this.lineButton_Click);
             // 
-            // mazeGeneratorToolStripMenuItem
+            // mazeGenerator
             // 
-            this.mazeGeneratorToolStripMenuItem.Image = global::EEditor.Properties.Resources.maze;
-            this.mazeGeneratorToolStripMenuItem.Name = "mazeGeneratorToolStripMenuItem";
-            this.mazeGeneratorToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.mazeGeneratorToolStripMenuItem.Text = "Maze Generator";
-            this.mazeGeneratorToolStripMenuItem.Visible = false;
+            this.mazeGenerator.Image = global::EEditor.Properties.Resources.maze;
+            this.mazeGenerator.Name = "mazeGenerator";
+            this.mazeGenerator.Size = new System.Drawing.Size(209, 26);
+            this.mazeGenerator.Text = "Maze Generator";
+            this.mazeGenerator.Click += new System.EventHandler(this.mazeGenerator_Click);
             // 
             // insertDropButton
             // 
@@ -1479,7 +1479,7 @@ namespace EEditor
         private System.Windows.Forms.ToolStripMenuItem tsmSaveAs;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripButton StatisticButton;
-        private System.Windows.Forms.ToolStripMenuItem mazeGeneratorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mazeGenerator;
         private System.Windows.Forms.ToolStripMenuItem bluePrintToolStripMenuItem;
         private System.Windows.Forms.ToolStrip BlockPickerToolStrip;
         private System.Windows.Forms.ToolStripButton BlockPicker0;

@@ -71,6 +71,7 @@ namespace EEditor
                 using (Graphics gr = Graphics.FromImage(bmp))
                 {
                     gr.Clear(bgcolor);
+                    gr.DrawImage(Properties.Resources.cross, 5, 5);
                     gr.DrawRectangle(new Pen(MainForm.themecolors.foreground), new Rectangle(0, 0, 23, 23));
                 }
                 pictureBox1.Image = bmp;
@@ -102,7 +103,6 @@ namespace EEditor
             else
             {
                 Bitmap bmp = new Bitmap(24, 24);
-                Console.WriteLine(Properties.Resources.cross.Width);
                 using (Graphics gr = Graphics.FromImage(bmp))
                 {
                     gr.Clear(Color.Transparent);
@@ -166,7 +166,9 @@ namespace EEditor
             Bitmap bmp = new Bitmap(24, 24);
             using (Graphics gr = Graphics.FromImage(bmp))
             {
-                gr.Clear(bgcolor);
+
+                gr.Clear(Color.Transparent);
+                gr.DrawImage(Properties.Resources.cross, 5, 5);
                 gr.DrawRectangle(new Pen(MainForm.themecolors.foreground), new Rectangle(0, 0, 23, 23));
             }
             pictureBox1.Image = bmp;

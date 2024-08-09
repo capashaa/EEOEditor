@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EEditor
 {
@@ -16,12 +18,28 @@ namespace EEditor
 
         private void BackgroundIgnore_Load(object sender, EventArgs e)
         {
+            listView1.ForeColor = MainForm.themecolors.foreground;
+            listView1.BackColor = MainForm.themecolors.accent;
+            listView2.ForeColor = MainForm.themecolors.foreground;
+            listView2.BackColor = MainForm.themecolors.accent;
+            textBox1.ForeColor = MainForm.themecolors.foreground;
+            textBox1.BackColor = MainForm.themecolors.accent;
+            this.ForeColor = MainForm.themecolors.foreground;
+            this.BackColor = MainForm.themecolors.background;
+            foreach (Control cnt in this.Controls)
+            {
+                if (cnt.GetType() == typeof(System.Windows.Forms.Button))
+                {
+                    cnt.ForeColor = MainForm.themecolors.foreground;
+                    cnt.BackColor = MainForm.themecolors.accent;
+                    ((System.Windows.Forms.Button)cnt).FlatStyle = FlatStyle.Flat;
+                }
+            }
             loaddata();
         }
 
         private void loaddata()
         {
-            Console.WriteLine(MainForm.userdata.IgnoreBlocks.Count);
             listView1.View = View.Tile;
             listView1.TileSize = new Size(200, 24);
             listView1.Items.Clear();
@@ -39,13 +57,13 @@ namespace EEditor
                 Bitmap img1 = new Bitmap(width, 16);
                 for (int i = 0; i < width; i++)
                 {
-                    if (i < 500 || i >= 1001)
+                    if (i < 500 || i >= 1000)
                     {
                         if (MainForm.decosBMI[i] != 0)
                         {
                             img1 = MainForm.decosBMD.Clone(new Rectangle(MainForm.decosBMI[i] * 16, 0, 16, 16), MainForm.decosBMD.PixelFormat);
                         }
-                        else if (MainForm.miscBMI[i] != 0)
+                        else if (MainForm.miscBMI[i] != 0 || MainForm.miscBMI[i] == 119)
                         {
                             img1 = MainForm.miscBMD.Clone(new Rectangle(MainForm.miscBMI[i] * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
                         }
@@ -111,7 +129,7 @@ namespace EEditor
         {
             if (listView1.SelectedIndices.Count > 0)
             {
-                JToken val = Convert.ToInt32(listView1.Items[0].Name);
+                JToken val = Convert.ToInt32(listView1.SelectedItems[0].Name);
                 MainForm.userdata.IgnoreBlocks.Remove(val);
                 loaddata();
             }
@@ -126,9 +144,13 @@ namespace EEditor
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (listView2.SelectedItems.Count == 1)
+            if (listView2.SelectedIndices.Count > 0)
             {
-                Console.WriteLine(listView2.SelectedItems[0].Text);
+              
+                JToken val = Convert.ToInt32(listView2.SelectedItems[0].Name);
+                listView2.Items.Remove(listView2.SelectedItems[0]);
+                MainForm.userdata.IgnoreBlocks.Add(val);
+                loaddata();
             }
         }
     }

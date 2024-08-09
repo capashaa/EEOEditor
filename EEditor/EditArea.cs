@@ -62,7 +62,6 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
         {
             InitializeComponent();
             this.MainForm = mainForm;
-
             this.SetStyle(
                 ControlStyles.AllPaintingInWmPaint |
                 ControlStyles.UserPaint |
@@ -81,7 +80,6 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
             this.DragEnter += EditArea_DragEnter;
             this.DragDrop += EditArea_DragDrop;
             this.Visible = true;
-
 
 
         }
@@ -705,7 +703,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                     {
                         if (CurFrame.BlockData3[p.Y, p.X].Length >= 10)
                         {
-                            text = CurFrame.BlockData3[p.Y, p.X].Substring(0, 14) + "....";
+                            text = CurFrame.BlockData3[p.Y, p.X].Substring(0, 10) + "....";
                         }
                         else
                         {

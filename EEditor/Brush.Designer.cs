@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Brush));
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -38,6 +39,11 @@
             this.numericUpDown1.Location = new System.Drawing.Point(12, 12);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             10,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
@@ -67,6 +73,7 @@
             this.ClientSize = new System.Drawing.Size(235, 50);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.numericUpDown1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Brush";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Brush";

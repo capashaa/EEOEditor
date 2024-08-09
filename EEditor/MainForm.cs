@@ -23,7 +23,6 @@ namespace EEditor
     {
         public static bool debug = false;
         public static int Zoom = 16;
-        private IArchiveEntry extract;
         public static theme themecolors = new theme();
         public static userData userdata = new userData();
         public static Dictionary<int, Bitmap> ActionBlocks = new Dictionary<int, Bitmap>();
@@ -335,6 +334,7 @@ namespace EEditor
                 { 1560, 257 },{ 1561, 258 },{ 1562, 259 },{ 1564, 260 },{ 1565, 261 },{ 1566, 262 },
                 { 1567, 263 },{ 1568, 264 },{ 1582, 265 },{ 1583, 266 }, { 1589, 267 }, { 1590, 268 },{ 1591, 269},{ 1598, 270},
                 { 1599, 271},{ 1600, 272},{ 1601, 273}, { 1603, 274 }, { 1604, 275}, { 1622,276}, { 1623, 277 }, { 1624, 278 }, { 1000, 176 }
+                
             };
             for (int i = 0; i < decorInit.Length / 2; i++)
             {
@@ -482,9 +482,10 @@ namespace EEditor
             {
                 themecolors = new theme()
                 {
-                    background = Color.FromArgb(75, 75, 75),
+                    
+                    background = ColorTranslator.FromHtml("#2E3440"),
                     imageColors = Color.White,
-                    accent = Color.FromArgb(100, 100, 100),
+                    accent = ColorTranslator.FromHtml("#3B4252"),
                     foreground = Color.White,
                     link = Color.Orange,
                     activelink = Color.Yellow,
@@ -1250,7 +1251,7 @@ namespace EEditor
             AddToolStrip(decosBMD, 2, new int[] { 200, 201 }, null, false, "New Year 2015", 2, 2, true);
             AddToolStrip(miscBMD, 1, new int[] { 244, 248 }, null, false, "New Year 2015", 2, 2, true);
 
-            AddToolStrip(decosBMD, 2, new int[] { 202, 273, 203, 204 }, null, false, "Fairytale", 2, 2, true);
+            AddToolStrip(decosBMD, 2, new int[] { 202, 273, 203, 204, 276 }, null, false, "Fairytale", 2, 2, true);
             AddToolStrip(miscBMD, 1, new int[] { 279 }, null, false, "Fairytale", 2, 2, true);
 
             AddToolStrip(decosBMD, 2, new int[] { 205, 206 }, null, false, "Spring 2016", 2, 2, true);
@@ -3264,6 +3265,7 @@ namespace EEditor
             lineButton.Checked = false;
             sprayButton.Checked = false;
             penButton.Checked = false;
+            mazeGenerator.Checked = false;
             editArea.Tool.CleanUp(false);
             editArea.Tool = new ToolDummy(editArea);
             editArea.Tool.PenID = selectedBrick.ID;
@@ -3281,6 +3283,7 @@ namespace EEditor
             sprayButton.Checked = false;
             penButton.Checked = true;
             filledCircleButton.Checked = false;
+            mazeGenerator.Checked = false;
             editArea.Tool.CleanUp(false);
             editArea.Tool = new ToolPen(editArea);
             editArea.Tool.PenID = selectedBrick.ID;
@@ -3316,6 +3319,7 @@ namespace EEditor
             sprayButton.Checked = false;
             penButton.Checked = false;
             filledCircleButton.Checked = false;
+            mazeGenerator.Checked = false;
             editArea.Tool.CleanUp(false);
             editArea.Tool = new ToolFill(editArea);
             editArea.Tool.PenID = selectedBrick.ID;
@@ -3339,6 +3343,7 @@ namespace EEditor
             sprayButton.Checked = true;
             penButton.Checked = false;
             filledCircleButton.Checked = false;
+            mazeGenerator.Checked = false;
             editArea.Tool.CleanUp(false);
             editArea.Tool = new ToolSpray(editArea);
             editArea.Tool.PenID = selectedBrick.ID;
@@ -3373,6 +3378,7 @@ namespace EEditor
             sprayButton.Checked = false;
             penButton.Checked = false;
             filledCircleButton.Checked = false;
+            mazeGenerator.Checked = false;
             editArea.Tool.CleanUp(false);
             editArea.Tool = new ToolMark(editArea);
             editArea.Tool.PenID = selectedBrick.ID;
@@ -3405,6 +3411,7 @@ namespace EEditor
             sprayButton.Checked = false;
             penButton.Checked = false;
             filledCircleButton.Checked = false;
+            mazeGenerator.Checked = false;
             editArea.Tool.CleanUp(false);
             editArea.Tool = new ToolRect(editArea);
             editArea.Tool.PenID = selectedBrick.ID;
@@ -3426,6 +3433,7 @@ namespace EEditor
             lineButton.Checked = false;
             sprayButton.Checked = false;
             penButton.Checked = false;
+            mazeGenerator.Checked = false;
             filledCircleButton.Checked = false;
             editArea.Tool.CleanUp(false);
             editArea.Tool = new ToolRectFill(editArea);
@@ -3449,6 +3457,7 @@ namespace EEditor
             circleButton.Checked = true;
             lineButton.Checked = false;
             filledCircleButton.Checked = false;
+            mazeGenerator.Checked = false;
             editArea.Tool.CleanUp(false);
             editArea.Tool = new ToolCircle(editArea);
             editArea.Tool.PenID = selectedBrick.ID;
@@ -3464,7 +3473,7 @@ namespace EEditor
             penButton.Checked = false;
             filledRectangleButton.Checked = false;
             circleButton.Checked = false;
-            mazeGeneratorToolStripMenuItem.Checked = true;
+            mazeGenerator.Checked = true;
             lineButton.Checked = false;
             filledCircleButton.Checked = false;
             editArea.Tool.CleanUp(false);
@@ -3472,7 +3481,10 @@ namespace EEditor
             editArea.Tool.PenID = selectedBrick.ID;
             selectionTool = false;
         }
-
+        private void mazeGenerator_Click(object sender, EventArgs e)
+        {
+            SetMazeTool(); mazeGenerator.Checked = false;
+        }
         private void circleButton_Click(object sender, EventArgs e)
         {
             SetCircleTool(); circleButton.Checked = false;
@@ -3489,6 +3501,7 @@ namespace EEditor
             circleButton.Checked = false;
             lineButton.Checked = false;
             filledCircleButton.Checked = false;
+            mazeGenerator.Checked = false;
             editArea.Tool.CleanUp(false);
             editArea.Tool = new ToolCircleFill(editArea);
             editArea.Tool.PenID = selectedBrick.ID;
@@ -3511,6 +3524,7 @@ namespace EEditor
             circleButton.Checked = false;
             lineButton.Checked = true;
             filledCircleButton.Checked = false;
+            mazeGenerator.Checked = false;
             editArea.Tool.CleanUp(false);
             editArea.Tool = new ToolLine(editArea);
             editArea.Tool.PenID = selectedBrick.ID;
@@ -4842,6 +4856,8 @@ namespace EEditor
                 MessageBox.Show("An error has occured: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 
     public class listofBlocks
@@ -4983,14 +4999,14 @@ namespace EEditor
         {
             get
             {
-                return Color.FromArgb(75, 75, 75);
+                return ColorTranslator.FromHtml("#2E3440");
             }
         }
         public override Color ImageMarginGradientBegin
         {
             get
             {
-                return Color.FromArgb(75, 75, 75);
+                return ColorTranslator.FromHtml("#2E3440");
             }
         }
 
@@ -4998,7 +5014,7 @@ namespace EEditor
         {
             get
             {
-                return Color.FromArgb(75, 75, 75);
+                return ColorTranslator.FromHtml("#2E3440");
             }
         }
 
@@ -5006,7 +5022,7 @@ namespace EEditor
         {
             get
             {
-                return Color.FromArgb(75, 75, 75);
+                return ColorTranslator.FromHtml("#2E3440");
             }
         }
 
@@ -5014,7 +5030,7 @@ namespace EEditor
         {
             get
             {
-                return Color.FromArgb(75, 75, 75);
+                return ColorTranslator.FromHtml("#2E3440");
             }
         }
 
@@ -5022,7 +5038,7 @@ namespace EEditor
         {
             get
             {
-                return Color.FromArgb(75, 75, 75);
+                return ColorTranslator.FromHtml("#2E3440");
             }
         }
 
@@ -5030,7 +5046,7 @@ namespace EEditor
         {
             get
             {
-                return Color.FromArgb(100, 100, 100);
+                return ColorTranslator.FromHtml("#3b4252");
             }
         }
 
@@ -5038,7 +5054,7 @@ namespace EEditor
         {
             get
             {
-                return Color.FromArgb(75, 75, 75);
+                return ColorTranslator.FromHtml("#2E3440");
             }
         }
 
@@ -5046,7 +5062,7 @@ namespace EEditor
         {
             get
             {
-                return Color.FromArgb(75, 75, 75);
+                return ColorTranslator.FromHtml("#2E3440");
             }
         }
 
@@ -5054,7 +5070,7 @@ namespace EEditor
         {
             get
             {
-                return Color.FromArgb(100, 100, 100);
+                return ColorTranslator.FromHtml("#3b4252");
             }
         }
 
@@ -5062,7 +5078,7 @@ namespace EEditor
         {
             get
             {
-                return Color.FromArgb(100, 100, 100);
+                return ColorTranslator.FromHtml("#2E3440");
             }
         }
 
@@ -5070,7 +5086,7 @@ namespace EEditor
         {
             get
             {
-                return Color.FromArgb(75, 75, 75);
+                return ColorTranslator.FromHtml("#2E3440");
             }
         }
 
@@ -5078,7 +5094,7 @@ namespace EEditor
         {
             get
             {
-                return Color.FromArgb(75, 75, 75);
+                return ColorTranslator.FromHtml("#2E3440");
             }
         }
     }
