@@ -5,7 +5,7 @@ Welcome to the EEOditor GitHub page! Here we host sourcecode and latest version 
 ## **About EEOditor**
 
 EEOditor is an offline Everybody Edits level editor, made to simplify level creation and manipulation.  
-Originally built by Cyph1e, then continued by capasha and robotkotkoer.  
+Originally built by Cyph1e, then continued by capasha and robotkoer.  
 
 ## **Installation/Download**
 You can Download this tool at [Releases](https://github.com/capashaa/EEOEditor/releases).  
@@ -19,7 +19,7 @@ settings.json store all settings. Folder blueprints saves blueprints.
 ## **System requirements**  
 
 EEOEditor have only been tested in a Windows environment. Not on Mac/Linux.  
-Versions of Windows that is supported, Windows: 7 SP1, 8, 8.1, 10 and 11.  
+This tool support: Windows: 7 SP1, 8, 8.1, 10 and 11.   
 
 If you don't have .NET Framework 4.8 Runtime installed on your computer.  
 You need to install this. Without the 4.8 Runtime the tool won't work.  

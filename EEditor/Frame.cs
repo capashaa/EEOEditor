@@ -174,9 +174,7 @@ namespace EEditor
             {
                 string fixedtitle = RemoveInvalidChars(MainForm.WOTitle.Replace(" ", "_"));
                 string fixedname = RemoveInvalidChars(MainForm.WONickname.Replace(" ", "_"));
-                Console.WriteLine(fixedname);
                 string path = $"{Directory.GetCurrentDirectory()}\\{fixedtitle}_-_{fixedname}.eelvl";
-                if (File.Exists(path)) File.Delete(path);
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 savelvl.Save(fs);
                 fs.Close();

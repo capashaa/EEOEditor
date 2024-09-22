@@ -1251,7 +1251,7 @@ namespace EEditor
             AddToolStrip(decosBMD, 2, new int[] { 200, 201 }, null, false, "New Year 2015", 2, 2, true);
             AddToolStrip(miscBMD, 1, new int[] { 244, 248 }, null, false, "New Year 2015", 2, 2, true);
 
-            AddToolStrip(decosBMD, 2, new int[] { 202, 273, 203, 204, 276 }, null, false, "Fairytale", 2, 2, true);
+            AddToolStrip(decosBMD, 2, new int[] { 202, 203, 204, 276 }, null, false, "Fairytale", 2, 2, true);
             AddToolStrip(miscBMD, 1, new int[] { 279 }, null, false, "Fairytale", 2, 2, true);
 
             AddToolStrip(decosBMD, 2, new int[] { 205, 206 }, null, false, "Spring 2016", 2, 2, true);
@@ -4857,7 +4857,20 @@ namespace EEditor
             }
         }
 
-
+        private void circleSizeButton_Click(object sender, EventArgs e)
+        {
+            editArea.Tool.CleanUp(false);
+            ToolCircleSize toolCircleMiddle = new ToolCircleSize();
+            if (MessageBox.Show("Circle around border?", "Circle Middle", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                toolCircleMiddle.CircleSize(new Point(0, 0), new Point(editArea.BlockWidth - 1, editArea.BlockHeight - 1), selectedBrick.ID);
+            }
+            else
+            {
+                toolCircleMiddle.CircleSize(new Point(1, 1), new Point(editArea.BlockWidth - 2, editArea.BlockHeight - 2), selectedBrick.ID);
+            }
+            selectionTool = false;
+        }
     }
 
     public class listofBlocks

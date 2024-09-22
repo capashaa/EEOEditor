@@ -86,6 +86,7 @@ namespace EEditor
             this.filledCircleButton = new System.Windows.Forms.ToolStripMenuItem();
             this.lineButton = new System.Windows.Forms.ToolStripMenuItem();
             this.mazeGenerator = new System.Windows.Forms.ToolStripMenuItem();
+            this.circleSizeButton = new System.Windows.Forms.ToolStripMenuItem();
             this.insertDropButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.imageButton = new System.Windows.Forms.ToolStripMenuItem();
             this.textButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -345,7 +346,7 @@ namespace EEditor
             this.settingsButton,
             this.worldButton,
             this.aboutButton});
-            this.settingsToolStrip.Location = new System.Drawing.Point(433, 0);
+            this.settingsToolStrip.Location = new System.Drawing.Point(402, 0);
             this.settingsToolStrip.Name = "settingsToolStrip";
             this.settingsToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.settingsToolStrip.Size = new System.Drawing.Size(78, 27);
@@ -614,7 +615,7 @@ namespace EEditor
             this.toolToolStrip.Location = new System.Drawing.Point(96, 0);
             this.toolToolStrip.Name = "toolToolStrip";
             this.toolToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.toolToolStrip.Size = new System.Drawing.Size(235, 27);
+            this.toolToolStrip.Size = new System.Drawing.Size(204, 27);
             this.toolToolStrip.TabIndex = 3;
             // 
             // penButton
@@ -678,6 +679,7 @@ namespace EEditor
             this.filledRectangleButton,
             this.circleButton,
             this.filledCircleButton,
+            this.circleSizeButton,
             this.lineButton,
             this.mazeGenerator});
             this.shapesDropButton.Image = global::EEditor.Properties.Resources.shapes;
@@ -739,6 +741,13 @@ namespace EEditor
             this.mazeGenerator.Size = new System.Drawing.Size(209, 26);
             this.mazeGenerator.Text = "Maze Generator";
             this.mazeGenerator.Click += new System.EventHandler(this.mazeGenerator_Click);
+            // 
+            // circleSizeButton
+            // 
+            this.circleSizeButton.Name = "circleSizeButton";
+            this.circleSizeButton.Size = new System.Drawing.Size(209, 26);
+            this.circleSizeButton.Text = "Middle Circle";
+            this.circleSizeButton.Click += new System.EventHandler(this.circleSizeButton_Click);
             // 
             // insertDropButton
             // 
@@ -881,7 +890,7 @@ namespace EEditor
             this.redoButton,
             this.historyButton,
             this.StatisticButton});
-            this.historyToolStrip.Location = new System.Drawing.Point(331, 0);
+            this.historyToolStrip.Location = new System.Drawing.Point(300, 0);
             this.historyToolStrip.Name = "historyToolStrip";
             this.historyToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.historyToolStrip.Size = new System.Drawing.Size(102, 27);
@@ -1503,6 +1512,7 @@ namespace EEditor
         private System.Windows.Forms.ToolStripLabel targetLabel;
         private System.Windows.Forms.ToolStripMenuItem eEditor40ToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton btnMinimapPaint;
+        private System.Windows.Forms.ToolStripMenuItem circleSizeButton;
     }
 }
 

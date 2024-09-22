@@ -430,6 +430,7 @@
     </Compile>
     <Compile Include="ToolCircleFill.cs" />
     <Compile Include="ToolCircle.cs" />
+    <Compile Include="ToolCircleSize.cs" />
     <Compile Include="ToolLine.cs" />
     <Compile Include="ToolMark.cs" />
     <Compile Include="ToolFill.cs" />
