@@ -2,9 +2,9 @@
 
 Added: Nord theme as dark theme.  
 Added: Replace tool: tooltip for spike special.  
-Added: Middle circle. Generate a circle in the middle of the workarea, around border or on border. 
+Added: Middle circle. Generate a circle in the middle of the workarea, around border or on border.  
 Removed: Fairytale had lock which is wrong decoration.  
-Fixed: Reset and cancel in world option didn't add a cross on background color. 
+Fixed: Reset and cancel in world option didn't add a cross on background color.  
 Fixed: Black images in replace tool never changed to white while in dark theme.  
 Fixed: Replace tool: Portal rotation never return 0.  
 Fixed: Block Text that had length of 10 or longer crashed the tool.  
