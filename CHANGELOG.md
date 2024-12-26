@@ -1,3 +1,9 @@
+## 2.1.0
+Fixed: Npc didn't use correct messages when placed.  
+Fixed: Save as, ended with error.   
+Fixed: Now possible to cancel Middle circle.  
+Fixed: Paint on Minimap use the current selected pen blockid.  
+
 ## 2.0.9
 
 Added: Nord theme as dark theme.  

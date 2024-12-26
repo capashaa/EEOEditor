@@ -4861,11 +4861,12 @@ namespace EEditor
         {
             editArea.Tool.CleanUp(false);
             ToolCircleSize toolCircleMiddle = new ToolCircleSize();
-            if (MessageBox.Show("Circle around border?", "Circle Middle", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            DialogResult yesno = MessageBox.Show("Yes = Circle around border, No = Circle on border", "Circle Middle", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (yesno == DialogResult.Yes)
             {
                 toolCircleMiddle.CircleSize(new Point(0, 0), new Point(editArea.BlockWidth - 1, editArea.BlockHeight - 1), selectedBrick.ID);
             }
-            else
+            else if (yesno == DialogResult.No)
             {
                 toolCircleMiddle.CircleSize(new Point(1, 1), new Point(editArea.BlockWidth - 2, editArea.BlockHeight - 2), selectedBrick.ID);
             }

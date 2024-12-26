@@ -181,7 +181,6 @@ namespace EEditor
             }
             else
             {
-                if (File.Exists(file.Name)) File.Delete(file.Name);
                 savelvl.Save(file);
                 file.Dispose();
             }

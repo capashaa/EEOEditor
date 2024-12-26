@@ -14,6 +14,8 @@ namespace EEditor
     {
         public int BlockWidth { get; set; }
         public int BlockHeight { get; set; }
+
+        
         public static Bitmap Bitmap { get; set; }
         public static uint[] Colors = new uint[3000];
         public static bool[] ImageColor = new bool[Colors.Length];
@@ -103,7 +105,7 @@ namespace EEditor
             for (int i = 0; i < xs.Count; ++i)
             {
                 SetPixel(xs[i], ys[i], 9);
-                MainForm.editArea.Frames[0].Foreground[ys[i], xs[i]] = 9;
+                MainForm.editArea.Frames[0].Foreground[ys[i], xs[i]] = MainForm.editArea.Tool.PenID;
                 MainForm.editArea.Draw(xs[i], ys[i], Graphics.FromImage(MainForm.editArea.Back), MainForm.userdata.thisColor);
                 r.X = xs[i];
                 r.Y = ys[i];
