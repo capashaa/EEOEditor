@@ -39,7 +39,6 @@
             this.StatusTextToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusColorToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.UpdateCheckCheckBox = new System.Windows.Forms.CheckBox();
             this.DarkThemeCheckBox = new System.Windows.Forms.CheckBox();
             this.cBHotkeyBar = new System.Windows.Forms.CheckBox();
             this.rbBackground = new System.Windows.Forms.RadioButton();
@@ -84,7 +83,7 @@
             "",
             "Old EEditor settings & logins",
             "Current EEOditor settings"});
-            this.clearComboBox.Location = new System.Drawing.Point(12, 261);
+            this.clearComboBox.Location = new System.Drawing.Point(11, 232);
             this.clearComboBox.Name = "clearComboBox";
             this.clearComboBox.Size = new System.Drawing.Size(139, 21);
             this.clearComboBox.TabIndex = 27;
@@ -94,7 +93,7 @@
             // 
             this.clearButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.clearButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.clearButton.Location = new System.Drawing.Point(157, 261);
+            this.clearButton.Location = new System.Drawing.Point(156, 230);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(49, 23);
             this.clearButton.TabIndex = 28;
@@ -118,7 +117,7 @@
             // 
             this.FasterShapeStyleCheckBox.AutoSize = true;
             this.FasterShapeStyleCheckBox.Enabled = false;
-            this.FasterShapeStyleCheckBox.Location = new System.Drawing.Point(12, 238);
+            this.FasterShapeStyleCheckBox.Location = new System.Drawing.Point(12, 209);
             this.FasterShapeStyleCheckBox.Name = "FasterShapeStyleCheckBox";
             this.FasterShapeStyleCheckBox.Size = new System.Drawing.Size(111, 17);
             this.FasterShapeStyleCheckBox.TabIndex = 30;
@@ -133,7 +132,7 @@
             this.StatusTextToolStripStatusLabel,
             this.StatusToolStripStatusLabel,
             this.StatusColorToolStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 299);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 263);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(259, 22);
             this.statusStrip1.TabIndex = 31;
@@ -159,22 +158,10 @@
             this.StatusColorToolStripStatusLabel.Name = "StatusColorToolStripStatusLabel";
             this.StatusColorToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
-            // UpdateCheckCheckBox
-            // 
-            this.UpdateCheckCheckBox.AutoSize = true;
-            this.UpdateCheckCheckBox.Enabled = false;
-            this.UpdateCheckCheckBox.Location = new System.Drawing.Point(11, 79);
-            this.UpdateCheckCheckBox.Name = "UpdateCheckCheckBox";
-            this.UpdateCheckCheckBox.Size = new System.Drawing.Size(113, 17);
-            this.UpdateCheckCheckBox.TabIndex = 32;
-            this.UpdateCheckCheckBox.Text = "Check for updates";
-            this.UpdateCheckCheckBox.UseVisualStyleBackColor = true;
-            this.UpdateCheckCheckBox.CheckedChanged += new System.EventHandler(this.UpdateCheckCheckBox_CheckedChanged);
-            // 
             // DarkThemeCheckBox
             // 
             this.DarkThemeCheckBox.AutoSize = true;
-            this.DarkThemeCheckBox.Location = new System.Drawing.Point(11, 102);
+            this.DarkThemeCheckBox.Location = new System.Drawing.Point(11, 79);
             this.DarkThemeCheckBox.Name = "DarkThemeCheckBox";
             this.DarkThemeCheckBox.Size = new System.Drawing.Size(85, 17);
             this.DarkThemeCheckBox.TabIndex = 34;
@@ -185,7 +172,7 @@
             // cBHotkeyBar
             // 
             this.cBHotkeyBar.AutoSize = true;
-            this.cBHotkeyBar.Location = new System.Drawing.Point(11, 125);
+            this.cBHotkeyBar.Location = new System.Drawing.Point(11, 102);
             this.cBHotkeyBar.Name = "cBHotkeyBar";
             this.cBHotkeyBar.Size = new System.Drawing.Size(106, 17);
             this.cBHotkeyBar.TabIndex = 35;
@@ -221,7 +208,7 @@
             // 
             this.gbSelectionTool.Controls.Add(this.rbBackground);
             this.gbSelectionTool.Controls.Add(this.rbEmpty);
-            this.gbSelectionTool.Location = new System.Drawing.Point(11, 148);
+            this.gbSelectionTool.Location = new System.Drawing.Point(11, 125);
             this.gbSelectionTool.Name = "gbSelectionTool";
             this.gbSelectionTool.Size = new System.Drawing.Size(176, 78);
             this.gbSelectionTool.TabIndex = 38;
@@ -232,11 +219,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(259, 321);
+            this.ClientSize = new System.Drawing.Size(259, 285);
             this.Controls.Add(this.gbSelectionTool);
             this.Controls.Add(this.cBHotkeyBar);
             this.Controls.Add(this.DarkThemeCheckBox);
-            this.Controls.Add(this.UpdateCheckCheckBox);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.FasterShapeStyleCheckBox);
             this.Controls.Add(this.usePenToolCheckBox);
@@ -270,7 +256,6 @@
         private System.Windows.Forms.ToolStripStatusLabel StatusToolStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel StatusColorToolStripStatusLabel;
         private System.Windows.Forms.CheckBox FasterShapeStyleCheckBox;
-        private System.Windows.Forms.CheckBox UpdateCheckCheckBox;
         private System.Windows.Forms.CheckBox DarkThemeCheckBox;
         private System.Windows.Forms.CheckBox cBHotkeyBar;
         private System.Windows.Forms.RadioButton rbBackground;

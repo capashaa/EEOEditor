@@ -89,10 +89,6 @@ namespace EEditor
         }
         #endregion
 
-        #region Check version
-
-
-        #endregion
         private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string link = null;
@@ -131,12 +127,6 @@ namespace EEditor
             {
                 Process.Start(link);
             }
-        }
-
-        private void DownloadButton_Click(object sender, EventArgs e)
-        {
-            /*Updater updater = new Updater();
-            updater.ShowDialog();*/
         }
 
         private void linkLabel_MouseHover(object sender, EventArgs e)

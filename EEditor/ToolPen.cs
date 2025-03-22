@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Xml.Schema;
 
 namespace EEditor
 {
@@ -15,7 +16,7 @@ namespace EEditor
             : base(editArea)
         {
         }
-
+        private ToolPenRound round = new ToolPenRound();
         public static Dictionary<int, int> rotation = new Dictionary<int, int>();
         public static Dictionary<int, int> id = new Dictionary<int, int>();
         public static Dictionary<int, int> target = new Dictionary<int, int>();
@@ -664,13 +665,14 @@ namespace EEditor
                     }
                     else if (PenSize >= 2 && PenSize <= 10)
                     {
-                        for (int yy = 0; yy < PenSize; yy++)
+                        round.plotCircle(p.X, p.Y, PenSize, PenID);
+                        /*for (int yy = 0; yy < PenSize; yy++)
                         {
                             for (int xx = 0; xx < PenSize; xx++)
                             {
                                 PlaceBrick(p.X + xx, p.Y + yy, false, true, false);
                             }
-                        }
+                        }*/
                     }
 
                 }
@@ -719,13 +721,8 @@ namespace EEditor
                     }
                     else if (PenSize >= 2 && PenSize <= 10)
                     {
-                        for (int yy = 0; yy < PenSize; yy++)
-                        {
-                            for (int xx = 0; xx < PenSize; xx++)
-                            {
-                                PlaceBrick(p.X + xx, p.Y + yy, false, true, false);
-                            }
-                        }
+                        
+                        round.plotCircle(p.X, p.Y, PenSize, PenID);
                     }
 
                 }

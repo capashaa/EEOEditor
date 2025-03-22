@@ -457,6 +457,7 @@
     </Compile>
     <Compile Include="Tool.cs" />
     <Compile Include="ToolPen.cs" />
+    <Compile Include="ToolPenRound.cs" />
     <Compile Include="ToolPicker.cs" />
     <Compile Include="ToolpickerSettings.cs">
       <SubType>Form</SubType>

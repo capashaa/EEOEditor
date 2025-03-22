@@ -4734,17 +4734,17 @@ namespace EEditor
             {
                 if (editArea.Frames.Count > 0)
                 {
-                    WOMade = wd.madeby;
+                    WOMade = wd.madeBy;
                     WOTitle = wd.title;
                     WONickname = wd.owner;
                     WODescription = wd.description;
                     WOMinimap = wd.minimp;
-                    userdata.useColor = wd.usecolor;
+                    userdata.useColor = wd.useColor;
                     WOCampaign = wd.campaign;
-                    WOCrewID = wd.crewid;
-                    WOCrewName = wd.crewname;
+                    WOCrewID = wd.crewId;
+                    WOCrewName = wd.crewName;
                     this.Text = $"({WOTitle}) [{WONickname}] ({editArea.Frames[0].Width}x{editArea.Frames[0].Height}) - EEOditor {this.ProductVersion}";
-                    if (wd.usecolor) userdata.thisColor = wd.bgcolor;
+                    if (wd.useColor) userdata.thisColor = wd.bgColor;
                     else userdata.thisColor = Color.Transparent;
                     using (Graphics g = Graphics.FromImage(editArea.Back))
                     {

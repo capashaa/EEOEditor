@@ -210,7 +210,7 @@ namespace EEditor
 
         private void Minimap_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!draw) MainForm.editArea.AutoScrollPosition = new System.Drawing.Point((e.X * 16) - 768, (e.Y * 16) - 256);
+            if (!MainForm.PaintOnMinimap) MainForm.editArea.AutoScrollPosition = new System.Drawing.Point((e.X * 16) - 768, (e.Y * 16) - 256);
         }
 
         private protected void Minimap_KeyDown(object sender, KeyEventArgs e)

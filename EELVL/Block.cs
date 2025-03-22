@@ -20,8 +20,9 @@ namespace EELVL
 			Number = I | (1 << 3),
 			Enumerable = I | (1 << 4),
 			Music = I | (1 << 5),
+            WorldPortalSpawn = I | (1 << 6),
 
-			SI = 1 << 10,
+            SI = 1 << 10,
 			Sign = SI | (1 << 0),
 			WorldPortal = SI | (1 << 1),
 
@@ -57,7 +58,7 @@ namespace EELVL
 			},
 			{ BlockType.Number,
 				165, 43, 213, 214, 1011, 1012, 113, 1619, 184, 185,
-				467, 1620, 1079, 1080, 1582, 421, 422, 461, 1584
+				467, 1620, 1079, 1080, 421, 422, 461, 1584
 			},
 			{ BlockType.Enumerable,
 				423, 1027, 1028, 418, 417, 420, 419, 453, 1517
@@ -71,7 +72,10 @@ namespace EELVL
 			{ BlockType.WorldPortal,
 				374
 			},
-			{ BlockType.Sign,
+            { BlockType.WorldPortalSpawn,
+                1582
+            },
+            { BlockType.Sign,
 				385
 			},
 			{ BlockType.Label,
@@ -106,7 +110,8 @@ namespace EELVL
 				BlockType.Number => new NumberBlock(bid, reader.ReadInt()),
 				BlockType.Enumerable => new EnumerableBlock(bid, reader.ReadInt()),
 				BlockType.Music => new MusicBlock(bid, reader.ReadInt()),
-				BlockType.Portal => new PortalBlock(bid, reader.ReadInt(), reader.ReadInt(), reader.ReadInt()),
+                BlockType.WorldPortalSpawn => new WorldPortalSpawnBlock(bid, reader.ReadInt()),
+                BlockType.Portal => new PortalBlock(bid, reader.ReadInt(), reader.ReadInt(), reader.ReadInt()),
 				BlockType.Sign => new SignBlock(bid, reader.ReadString(), reader.ReadInt()),
 				BlockType.WorldPortal => new WorldPortalBlock(bid, reader.ReadString(), reader.ReadInt()),
 				BlockType.Label => new LabelBlock(bid, reader.ReadString(), reader.ReadString(), reader.ReadInt()),
@@ -132,7 +137,8 @@ namespace EELVL
 				case SignBlock b: writer.WriteString(b.Text); writer.WriteInt(b.Morph); break;
 				case PortalBlock b: writer.WriteInt(b.Rotation); writer.WriteInt(b.ID); writer.WriteInt(b.Target); break;
 				case MusicBlock b: writer.WriteInt(b.Note); break;
-				case EnumerableBlock b: writer.WriteInt(b.Variant); break;
+                case WorldPortalSpawnBlock b: writer.WriteInt(b.ID); break;
+                case EnumerableBlock b: writer.WriteInt(b.Variant); break;
 				case NumberBlock b: writer.WriteInt(b.Number); break;
 				case RotatableBlock b: writer.WriteInt(b.Rotation); break;
 				case MorphableBlock b: writer.WriteInt(b.Morph); break;
@@ -165,7 +171,28 @@ namespace EELVL
 			public static bool operator !=(Block a, Block b) => !a.Equals(b);
 		}
 
-		public class MorphableBlock : Block
+        public class WorldPortalSpawnBlock : Block
+        {
+            public int ID { get; }
+
+            internal WorldPortalSpawnBlock(BlockType type, int bid, int id) : base(type, bid)
+            {
+                ID = id;
+            }
+
+            public WorldPortalSpawnBlock(int bid, int id)
+                : this(BlockType.WorldPortalSpawn, bid, id) { }
+
+            public override bool Equals(object obj)
+                => obj is WorldPortalSpawnBlock b && base.Equals(b)
+                && b.ID == ID;
+
+            public override int GetHashCode()
+               => base.GetHashCode() * 1619 + ID;
+        }
+
+
+        public class MorphableBlock : Block
 		{
 			public int Morph { get; }
 

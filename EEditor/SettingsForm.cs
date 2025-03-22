@@ -32,7 +32,6 @@ namespace EEditor
             tp.SetToolTip(selectAllBorderCheckBox, "Includes bordering blocks when selecting the whole world by hotkey Ctrl+A.");
             tp.SetToolTip(confirmCloseCheckBox, "Prompts when you attempt to close EEOditor.");
             tp.SetToolTip(FasterShapeStyleCheckBox, "Showing red lines instead of blocks.");
-            tp.SetToolTip(UpdateCheckCheckBox, "Check for new updates.");
             tp.SetToolTip(DarkThemeCheckBox, "Choose between light and dark theme.");
             tp.SetToolTip(cBHotkeyBar, "Show or hide HotkeyBar.");
             tp.SetToolTip(rbBackground, "Ingnore empty blocks on backgrounds.");
@@ -41,7 +40,6 @@ namespace EEditor
             selectAllBorderCheckBox.Checked = MainForm.userdata.selectAllBorder;
             confirmCloseCheckBox.Checked = MainForm.userdata.confirmClose;
             FasterShapeStyleCheckBox.Checked = MainForm.userdata.fastshape;
-            UpdateCheckCheckBox.Checked = MainForm.userdata.checkUpdate;
             DarkThemeCheckBox.Checked = MainForm.userdata.darkTheme;
             cBHotkeyBar.Checked = MainForm.userdata.HotkeyBar;
             if (rbBackground.Checked) MainForm.userdata.oldmark = true;
@@ -115,10 +113,6 @@ namespace EEditor
             }
         }
 
-        private void UpdateCheckCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            MainForm.userdata.checkUpdate = UpdateCheckCheckBox.Checked;
-        }
         #endregion
 
         #region Clear settings

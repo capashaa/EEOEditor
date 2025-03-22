@@ -1,3 +1,8 @@
+## 2.1.1
+Removed: Check for updates.  
+Fixed: Drawing on minimap did use move around in world.  
+Added: Brush for pen tool.    
+
 ## 2.1.0
 Fixed: Npc didn't use correct messages when placed.  
 Fixed: Save as, ended with error.   

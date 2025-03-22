@@ -17,18 +17,18 @@ namespace EEditor
         public string title { get; set; }
         public string owner { get; set; }
 
-        public string madeby { get; set; }
-        public bool usecolor { get; set; }
+        public string madeBy { get; set; }
+        public bool useColor { get; set; }
         public string description { get; set; }
         public bool minimp { get; set; }
 
-        public string crewname { get; set; }
+        public string crewName { get; set; }
 
-        public string crewid { get; set; }
+        public string crewId { get; set; }
 
         public bool campaign { get; set; }
 
-        public Color bgcolor { get; set; }
+        public Color bgColor { get; set; }
         public WorldSettings()
         {
             InitializeComponent();
@@ -38,11 +38,11 @@ namespace EEditor
         {
             title = string.IsNullOrEmpty(tbtitle.Text) ? "Untitled World" : tbtitle.Text;
             owner = string.IsNullOrEmpty(tbowner.Text) ? "player" : tbowner.Text.ToLower();
-            madeby = txtbOwnerID.Text;
+            madeBy = txtbOwnerID.Text;
             minimp = cbMinimap.Checked;
             campaign = cbCampaign.Checked;
-            crewid = txtbCrewID.Text;
-            crewname = txtbCrewName.Text;
+            crewId = txtbCrewID.Text;
+            crewName = txtbCrewName.Text;
             description = string.IsNullOrEmpty(txtbDescr.Text) ? null : txtbDescr.Text;
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -53,24 +53,24 @@ namespace EEditor
             ColorDialog dg = new ColorDialog();
             if (dg.ShowDialog() == DialogResult.OK)
             {
-                usecolor = true;
-                bgcolor = dg.Color;
+                useColor = true;
+                bgColor = dg.Color;
                 Bitmap bmp = new Bitmap(24, 24);
                 using (Graphics gr = Graphics.FromImage(bmp))
                 {
-                    gr.Clear(bgcolor);
+                    gr.Clear(bgColor);
                     gr.DrawRectangle(new Pen(MainForm.themecolors.foreground), new Rectangle(0, 0, 23, 23));
                 }
                 pictureBox1.Image = bmp;
             }
             else
             {
-                usecolor = false;
-                bgcolor = Color.Transparent;
+                useColor = false;
+                bgColor = Color.Transparent;
                 Bitmap bmp = new Bitmap(24, 24);
                 using (Graphics gr = Graphics.FromImage(bmp))
                 {
-                    gr.Clear(bgcolor);
+                    gr.Clear(bgColor);
                     gr.DrawImage(Properties.Resources.cross, 5, 5);
                     gr.DrawRectangle(new Pen(MainForm.themecolors.foreground), new Rectangle(0, 0, 23, 23));
                 }
@@ -161,8 +161,8 @@ namespace EEditor
             tbtitle.Text = "Untitled World";
             tbowner.Text = "player";
             txtbDescr.Text = "";
-            usecolor = false;
-            bgcolor = Color.Transparent;
+            useColor = false;
+            bgColor = Color.Transparent;
             Bitmap bmp = new Bitmap(24, 24);
             using (Graphics gr = Graphics.FromImage(bmp))
             {

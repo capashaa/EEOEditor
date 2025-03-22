@@ -36,7 +36,6 @@
             this.AboutLabel = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnDiscord = new System.Windows.Forms.Button();
-            this.DownloadButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -74,7 +73,7 @@
             // WikiButton
             // 
             this.WikiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.WikiButton.Location = new System.Drawing.Point(10, 89);
+            this.WikiButton.Location = new System.Drawing.Point(216, 55);
             this.WikiButton.Name = "WikiButton";
             this.WikiButton.Size = new System.Drawing.Size(97, 23);
             this.WikiButton.TabIndex = 2;
@@ -85,7 +84,7 @@
             // HomepageButton
             // 
             this.HomepageButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.HomepageButton.Location = new System.Drawing.Point(113, 89);
+            this.HomepageButton.Location = new System.Drawing.Point(10, 89);
             this.HomepageButton.Name = "HomepageButton";
             this.HomepageButton.Size = new System.Drawing.Size(97, 23);
             this.HomepageButton.TabIndex = 1;
@@ -116,7 +115,6 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnDiscord);
-            this.groupBox4.Controls.Add(this.DownloadButton);
             this.groupBox4.Controls.Add(this.BugsOrFeatureButton);
             this.groupBox4.Controls.Add(this.AboutLabel);
             this.groupBox4.Controls.Add(this.WikiButton);
@@ -132,25 +130,13 @@
             // btnDiscord
             // 
             this.btnDiscord.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDiscord.Location = new System.Drawing.Point(215, 89);
+            this.btnDiscord.Location = new System.Drawing.Point(113, 89);
             this.btnDiscord.Name = "btnDiscord";
             this.btnDiscord.Size = new System.Drawing.Size(97, 23);
             this.btnDiscord.TabIndex = 5;
             this.btnDiscord.Text = "EEO Discord";
             this.btnDiscord.UseVisualStyleBackColor = true;
             this.btnDiscord.Click += new System.EventHandler(this.Button_Click);
-            // 
-            // DownloadButton
-            // 
-            this.DownloadButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DownloadButton.Enabled = false;
-            this.DownloadButton.Location = new System.Drawing.Point(215, 55);
-            this.DownloadButton.Name = "DownloadButton";
-            this.DownloadButton.Size = new System.Drawing.Size(97, 23);
-            this.DownloadButton.TabIndex = 4;
-            this.DownloadButton.Text = "Downloader";
-            this.DownloadButton.UseVisualStyleBackColor = true;
-            this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
             // 
             // label1
             // 
@@ -422,7 +408,6 @@
         private System.Windows.Forms.LinkLabel ZIPLinkLabel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.LinkLabel lukemLinkLabel;
-        private System.Windows.Forms.Button DownloadButton;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnDiscord;
     }

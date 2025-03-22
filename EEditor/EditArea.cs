@@ -18,6 +18,7 @@ namespace EEditor
     {
         public int BlockWidth { get; set; }
         public int BlockHeight { get; set; }
+        private ToolPenRound round = new ToolPenRound();
         public Frame Background { get { return Frames[0]; } }
         public Frame CurFrame { get { return Frames[curFrame]; } }
         public int[,] mouseBlocksF = new int[1, 1];
@@ -80,7 +81,6 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
             this.DragEnter += EditArea_DragEnter;
             this.DragDrop += EditArea_DragDrop;
             this.Visible = true;
-
 
         }
 
@@ -186,7 +186,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
 
         void DrawLine(Point P, Point Q)
         {
-
+           
             int x0 = P.X, y0 = P.Y;
             int x1 = Q.X, y1 = Q.Y;
             int dx = Math.Abs(x1 - x0);
@@ -269,16 +269,8 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                         }
                         else if (Tool.PenSize >= 2 && Tool.PenSize <= 10)
                         {
-                            for (int yy = 0; yy < Tool.PenSize; yy++)
-                            {
-                                for (int xx = 0; xx < Tool.PenSize; xx++)
-                                {
-                                    if (xs[i] + xx <= CurFrame.Width - 1 && ys[i] + yy <= CurFrame.Height - 1)
-                                    {
-                                        CurFrame.Foreground[ys[i] + yy, xs[i] + xx] = Tool.PenID;
-                                    }
-                                }
-                            }
+                            
+                            round.plotCircle(xs[i], ys[i], Tool.PenSize, Tool.PenID);
                         }
                     }
                 }
