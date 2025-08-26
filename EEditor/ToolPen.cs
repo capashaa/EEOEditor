@@ -665,14 +665,14 @@ namespace EEditor
                     }
                     else if (PenSize >= 2 && PenSize <= 10)
                     {
-                        round.plotCircle(p.X, p.Y, PenSize, PenID);
-                        /*for (int yy = 0; yy < PenSize; yy++)
+                        //round.plotCircle(p.X, p.Y, PenSize, PenID);
+                        for (int yy = 0; yy < PenSize; yy++)
                         {
                             for (int xx = 0; xx < PenSize; xx++)
                             {
                                 PlaceBrick(p.X + xx, p.Y + yy, false, true, false);
                             }
-                        }*/
+                        }
                     }
 
                 }
@@ -721,8 +721,14 @@ namespace EEditor
                     }
                     else if (PenSize >= 2 && PenSize <= 10)
                     {
-                        
-                        round.plotCircle(p.X, p.Y, PenSize, PenID);
+
+                        for (int yy = 0; yy < PenSize; yy++)
+                        {
+                            for (int xx = 0; xx < PenSize; xx++)
+                            {
+                                PlaceBrick(p.X + xx, p.Y + yy, false, true, false);
+                            }
+                        }
                     }
 
                 }
