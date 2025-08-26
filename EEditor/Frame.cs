@@ -662,10 +662,12 @@ namespace EEditor
                         }
 
                     }
+                    fs.Dispose();
                     f.toobig = false;
                 }
                 else
                 {
+                    fs.Dispose();
                     f.toobig = true;
                 }
                 return f;
