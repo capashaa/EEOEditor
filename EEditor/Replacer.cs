@@ -167,10 +167,11 @@ namespace EEditor
                 }
                 if (cntr.GetType() == typeof(GroupBox))
                 {
-                    cntr.ForeColor = MainForm.themecolors.foreground;
+                    cntr.ForeColor = MainForm.themecolors.groupbox;
                     cntr.BackColor = MainForm.themecolors.background;
                     foreach (Control cntrl in cntr.Controls)
                     {
+                        cntrl.ForeColor = MainForm.themecolors.foreground;
                         if (cntrl.GetType() == typeof(Button))
                         {
                             cntrl.ForeColor = MainForm.themecolors.foreground;
@@ -209,72 +210,108 @@ namespace EEditor
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            ToolTip tp = new ToolTip();
-            tp.SetToolTip(button4, "Finds the next block with ID " + numericUpDown1.Value + "\nAnd displays a red rectangle around it");
-            tp.SetToolTip(button3, "Finds all blocks with ID " + numericUpDown1.Value + "\nAnd displays a red rectangle around them");
-            tp.SetToolTip(button5, "Finds the next block with ID " + numericUpDown1.Value + "\nAnd replaces it with block ID " + numericUpDown2.Value);
-            tp.SetToolTip(button1, "Finds all blocks with ID " + numericUpDown1.Value + "\nAnd replaces them with block ID " + numericUpDown2.Value);
-            if (numericUpDown1.Value < 500 || numericUpDown1.Value >= 1001 && numericUpDown1.Value < 3000)
-            {
-                if (MainForm.decosBMI[(int)numericUpDown1.Value] != 0)
-                {
-                    Bitmap img1 = MainForm.decosBMD.Clone(new Rectangle(MainForm.decosBMI[Convert.ToInt32(numericUpDown1.Value)] * 16, 0, 16, 16), MainForm.decosBMD.PixelFormat);
-                    FindPictureBox.Image = img1;
-                    button4.Enabled = true;
-                    button3.Enabled = true;
-                    findRotate.Value = 1;
-                    findRotation();
-                }
-                else if (MainForm.miscBMI[(int)numericUpDown1.Value] != 0 || (int)numericUpDown1.Value == 119)
-                {
+            /*if (rbSpikes.Checked) {
+                var rotations = new int[] { 361, 1625, 1627 };
+                if ((int)numericUpDown1.Value == 361 ||
+                    (int)numericUpDown1.Value == 1625 ||
+                    (int)numericUpDown1.Value == 1627) 
+                { 
+                    if (MainForm.miscBMI[(int)numericUpDown1.Value] != 0 || (int)numericUpDown1.Value == 119)
+                    {
 
-                    Bitmap img1 = MainForm.miscBMD.Clone(new Rectangle(MainForm.miscBMI[Convert.ToInt32(numericUpDown1.Value)] * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
-                    FindPictureBox.Image = img1;
-                    button4.Enabled = true;
-                    button3.Enabled = true;
-                    findRotate.Value = 1;
-                    findRotation();
-                }
-                else if (MainForm.foregroundBMI[(int)numericUpDown1.Value] != 0 || (int)numericUpDown1.Value == 0)
-                {
-                    Bitmap img1 = MainForm.foregroundBMD.Clone(new Rectangle(MainForm.foregroundBMI[Convert.ToInt32(numericUpDown1.Value)] * 16, 0, 16, 16), MainForm.foregroundBMD.PixelFormat);
-                    FindPictureBox.Image = img1;
-                    numericUpDown1.ForeColor = MainForm.themecolors.foreground;
-                    button4.Enabled = true;
-                    button3.Enabled = true;
-                    findRotate.Value = 1;
-                    findRotation();
+                        Bitmap img1 = MainForm.miscBMD.Clone(new Rectangle(MainForm.miscBMI[Convert.ToInt32(numericUpDown1.Value)] * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                        FindPictureBox.Image = img1;
+                        button4.Enabled = true;
+                        button3.Enabled = true;
+                        findRotate.Value = 1;
+                        findRotation();
+                    }
                 }
                 else
                 {
-                    Bitmap temp = new Bitmap(16, 16);
-                    Graphics gr = Graphics.FromImage(temp);
-                    gr.Clear(Color.Black);
-                    gr.DrawImage(Properties.Resources.unknown.Clone(new Rectangle(1 * 16, 0, 16, 16), Properties.Resources.unknown.PixelFormat), 0, 0);
-                    FindPictureBox.Image = temp;
+                    foreach (var rot in rotations)
+                    {
+                        if (rot <= (int)numericUpDown1.Value)
+                        {
+                            numericUpDown1.Value = rot;
+                            break;
+                        }
+                        else if (rot > (int)numericUpDown1.Value)
+                        {
+                            numericUpDown1.Value = rot;
+                            break;
+                        }
+                    }
                 }
             }
-            else if (numericUpDown1.Value >= 500 && numericUpDown1.Value <= 999)
-            {
-                if (MainForm.backgroundBMI[(int)numericUpDown1.Value] != 0 || (int)numericUpDown1.Value == 500)
+            else
+            {*/
+                ToolTip tp = new ToolTip();
+                tp.SetToolTip(button4, "Finds the next block with ID " + numericUpDown1.Value + "\nAnd displays a red rectangle around it");
+                tp.SetToolTip(button3, "Finds all blocks with ID " + numericUpDown1.Value + "\nAnd displays a red rectangle around them");
+                tp.SetToolTip(button5, "Finds the next block with ID " + numericUpDown1.Value + "\nAnd replaces it with block ID " + numericUpDown2.Value);
+                tp.SetToolTip(button1, "Finds all blocks with ID " + numericUpDown1.Value + "\nAnd replaces them with block ID " + numericUpDown2.Value);
+                if (numericUpDown1.Value < 500 || numericUpDown1.Value >= 1001 && numericUpDown1.Value < 3000)
                 {
-                    Bitmap img7 = MainForm.backgroundBMD.Clone(new Rectangle(MainForm.backgroundBMI[Convert.ToInt32(numericUpDown1.Value)] * 16, 0, 16, 16), MainForm.backgroundBMD.PixelFormat);
-                    FindPictureBox.Image = img7;
-                    numericUpDown1.ForeColor = MainForm.themecolors.foreground;
-                    button4.Enabled = true;
-                    button3.Enabled = true;
+                    if (MainForm.decosBMI[(int)numericUpDown1.Value] != 0)
+                    {
+                        Bitmap img1 = MainForm.decosBMD.Clone(new Rectangle(MainForm.decosBMI[Convert.ToInt32(numericUpDown1.Value)] * 16, 0, 16, 16), MainForm.decosBMD.PixelFormat);
+                        FindPictureBox.Image = img1;
+                        button4.Enabled = true;
+                        button3.Enabled = true;
+                        findRotate.Value = 1;
+                        findRotation();
+                    }
+                    else if (MainForm.miscBMI[(int)numericUpDown1.Value] != 0 || (int)numericUpDown1.Value == 119)
+                    {
+
+                        Bitmap img1 = MainForm.miscBMD.Clone(new Rectangle(MainForm.miscBMI[Convert.ToInt32(numericUpDown1.Value)] * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                        FindPictureBox.Image = img1;
+                        button4.Enabled = true;
+                        button3.Enabled = true;
+                        findRotate.Value = 1;
+                        findRotation();
+                    }
+                    else if (MainForm.foregroundBMI[(int)numericUpDown1.Value] != 0 || (int)numericUpDown1.Value == 0)
+                    {
+                        Bitmap img1 = MainForm.foregroundBMD.Clone(new Rectangle(MainForm.foregroundBMI[Convert.ToInt32(numericUpDown1.Value)] * 16, 0, 16, 16), MainForm.foregroundBMD.PixelFormat);
+                        FindPictureBox.Image = img1;
+                        numericUpDown1.ForeColor = MainForm.themecolors.foreground;
+                        button4.Enabled = true;
+                        button3.Enabled = true;
+                        findRotate.Value = 1;
+                        findRotation();
+                    }
+                    else
+                    {
+                        Bitmap temp = new Bitmap(16, 16);
+                        Graphics gr = Graphics.FromImage(temp);
+                        gr.Clear(Color.Black);
+                        gr.DrawImage(Properties.Resources.unknown.Clone(new Rectangle(1 * 16, 0, 16, 16), Properties.Resources.unknown.PixelFormat), 0, 0);
+                        FindPictureBox.Image = temp;
+                    }
                 }
-                else
+                else if (numericUpDown1.Value >= 500 && numericUpDown1.Value <= 999)
                 {
-                    Bitmap temp = new Bitmap(16, 16);
-                    Graphics gr = Graphics.FromImage(temp);
-                    gr.Clear(Color.Black);
-                    gr.DrawImage(Properties.Resources.unknown.Clone(new Rectangle(2 * 16, 0, 16, 16), Properties.Resources.unknown.PixelFormat), 0, 0);
-                    FindPictureBox.Image = temp;
+                    if (MainForm.backgroundBMI[(int)numericUpDown1.Value] != 0 || (int)numericUpDown1.Value == 500)
+                    {
+                        Bitmap img7 = MainForm.backgroundBMD.Clone(new Rectangle(MainForm.backgroundBMI[Convert.ToInt32(numericUpDown1.Value)] * 16, 0, 16, 16), MainForm.backgroundBMD.PixelFormat);
+                        FindPictureBox.Image = img7;
+                        numericUpDown1.ForeColor = MainForm.themecolors.foreground;
+                        button4.Enabled = true;
+                        button3.Enabled = true;
+                    }
+                    else
+                    {
+                        Bitmap temp = new Bitmap(16, 16);
+                        Graphics gr = Graphics.FromImage(temp);
+                        gr.Clear(Color.Black);
+                        gr.DrawImage(Properties.Resources.unknown.Clone(new Rectangle(2 * 16, 0, 16, 16), Properties.Resources.unknown.PixelFormat), 0, 0);
+                        FindPictureBox.Image = temp;
 
+                    }
                 }
-            }
-
+            //}
         }
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
