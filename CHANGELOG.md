@@ -1,7 +1,9 @@
 ## 2.1.1
 Removed: Check for updates.  
 Fixed: Drawing on minimap did use move around in world.  
-Added: Brush for pen tool.    
+Fixed: GroupBox color in Replacer didn't use correct color.  
+Fixed: World, Size List.     
+Changed: Dark theme now use Dracula.  
 
 ## 2.1.0
 Fixed: Npc didn't use correct messages when placed.  
