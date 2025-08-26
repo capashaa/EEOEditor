@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewDialogList));
             this.Listviewlos = new System.Windows.Forms.ListView();
             this.cHSizeNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cHSizeName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -44,7 +45,7 @@
             this.Listviewlos.Location = new System.Drawing.Point(12, 12);
             this.Listviewlos.MultiSelect = false;
             this.Listviewlos.Name = "Listviewlos";
-            this.Listviewlos.Size = new System.Drawing.Size(273, 328);
+            this.Listviewlos.Size = new System.Drawing.Size(273, 284);
             this.Listviewlos.TabIndex = 0;
             this.Listviewlos.UseCompatibleStateImageBehavior = false;
             this.Listviewlos.View = System.Windows.Forms.View.Details;
@@ -58,17 +59,20 @@
             // cHSizeName
             // 
             this.cHSizeName.Text = "Name";
-            this.cHSizeName.Width = 133;
+            this.cHSizeName.Width = 137;
             // 
             // NewDialogList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 358);
+            this.ClientSize = new System.Drawing.Size(302, 308);
             this.Controls.Add(this.Listviewlos);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(318, 347);
+            this.MinimumSize = new System.Drawing.Size(318, 347);
             this.Name = "NewDialogList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "List of Sizes";
+            this.Text = "Word List Sizes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewDialogList_FormClosing);
             this.Load += new System.EventHandler(this.NewDialogList_Load);
             this.ResumeLayout(false);
