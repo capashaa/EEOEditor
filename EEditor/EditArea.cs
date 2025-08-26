@@ -67,7 +67,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                 ControlStyles.AllPaintingInWmPaint |
                 ControlStyles.UserPaint |
                 ControlStyles.DoubleBuffer, true);
-            Bricks = new Bitmap[4000];
+            Bricks = new Bitmap[6000];
             BricksFade = new Bitmap[6000];
             Tool = new ToolPen(this) { PenID = 9 };
             Frames = new List<Frame>();
@@ -186,7 +186,7 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
 
         void DrawLine(Point P, Point Q)
         {
-           
+
             int x0 = P.X, y0 = P.Y;
             int x1 = Q.X, y1 = Q.Y;
             int dx = Math.Abs(x1 - x0);
@@ -269,8 +269,17 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
                         }
                         else if (Tool.PenSize >= 2 && Tool.PenSize <= 10)
                         {
-                            
-                            round.plotCircle(xs[i], ys[i], Tool.PenSize, Tool.PenID);
+
+                            for (int yy = 0; yy < Tool.PenSize; yy++)
+                            {
+                                for (int xx = 0; xx < Tool.PenSize; xx++)
+                                {
+                                    if (xs[i] + xx <= CurFrame.Width - 1 && ys[i] + yy <= CurFrame.Height - 1) {
+                                        CurFrame.Foreground[ys[i] + yy, xs[i] + xx] = Tool.PenID;
+                                    }
+                                }
+                            }
+                           
                         }
                     }
                 }
@@ -320,22 +329,48 @@ IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
 
         public void Init(Frame frame, bool frme)
         {
-            started = true;
-
-            BlockHeight = frame.Height;
-            BlockWidth = frame.Width;
-            Frames.Clear();
-            Frames.Add(frame);
-            curFrame = 0;
-            Size size = new Size(BlockWidth * MainForm.Zoom, BlockHeight * MainForm.Zoom);
-            //Bricks = new Bitmap[3000];
-            //BricksFade = new Bitmap[BlockWidth * MainForm.Zoom];
-            Back = new Bitmap(BlockWidth * MainForm.Zoom, BlockHeight * MainForm.Zoom);
-            Minimap.Init(BlockWidth, BlockHeight);
-            PaintCurFrame();
-            started = false;
-
-            this.AutoScrollMinSize = size;
+            bool success = false;
+            if (this.InvokeRequired) 
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        started = true;
+                        BlockHeight = frame.Height;
+                        BlockWidth = frame.Width;
+                        Frames.Clear();
+                        Frames.Add(frame);
+                        curFrame = 0;
+                        Size size = new Size(BlockWidth * MainForm.Zoom, BlockHeight * MainForm.Zoom);
+                        //Bricks = new Bitmap[3000];
+                        //BricksFade = new Bitmap[BlockWidth * MainForm.Zoom];
+                        //Back = null;
+                        Back = new Bitmap(BlockWidth * MainForm.Zoom, BlockHeight * MainForm.Zoom);
+                        Minimap.Init(BlockWidth, BlockHeight);
+                        PaintCurFrame();
+                        this.AutoScrollMinSize = size;
+                        started = false;
+                        success = true;
+                    });
+                }
+            else
+            {
+                started = true;
+                BlockHeight = frame.Height;
+                BlockWidth = frame.Width;
+                Frames.Clear();
+                Frames.Add(frame);
+                curFrame = 0;
+                Size size = new Size(BlockWidth * MainForm.Zoom, BlockHeight * MainForm.Zoom);
+                //Bricks = new Bitmap[3000];
+                //BricksFade = new Bitmap[BlockWidth * MainForm.Zoom];
+                //Back = null;
+                Back = new Bitmap(BlockWidth * MainForm.Zoom, BlockHeight * MainForm.Zoom);
+                Minimap.Init(BlockWidth, BlockHeight);
+                PaintCurFrame();
+                this.AutoScrollMinSize = size;
+                started = false;
+                success = true;
+            }
         }
         public void zoomRefresh()
         {
