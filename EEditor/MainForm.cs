@@ -1,21 +1,25 @@
-﻿using Newtonsoft.Json;
+﻿using EEditor.Properties;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SharpCompress.Archives;
+using SharpCompress.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Windows.Forms;
-using Microsoft.Win32;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
-using System.Xml.Linq;
-using EEditor.Properties;
-using SharpCompress.Common;
-using SharpCompress.Archives;
+using System.Runtime.InteropServices.ComTypes;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Linq;
+using static System.Net.WebRequestMethods;
+using static System.Windows.Forms.LinkLabel;
 
 namespace EEditor
 {
@@ -23,8 +27,10 @@ namespace EEditor
     {
         public static bool debug = false;
         public static int Zoom = 16;
+        public static System.Windows.Forms.Timer loadworld = new System.Windows.Forms.Timer();
         public static theme themecolors = new theme();
         public static userData userdata = new userData();
+        public static Semaphore sesu = new Semaphore(0, 1);
         public static Dictionary<int, Bitmap> ActionBlocks = new Dictionary<int, Bitmap>();
         public static Dictionary<int, Bitmap> ForegroundBlocks = new Dictionary<int, Bitmap>();
         public static Dictionary<int, Bitmap> DecorationBlocks = new Dictionary<int, Bitmap>();
@@ -58,7 +64,10 @@ namespace EEditor
         public int pressed = 0;
         private Color backgroundColor = Color.FromArgb(71, 71, 71);
         public static System.Windows.Forms.Timer refresh = new System.Windows.Forms.Timer();
-
+        public string lvlPath = $"{Directory.GetCurrentDirectory()}\\worlds";
+        public static int totalWorkers = 5;
+        public static int completedWorkers = 0;
+        public static object lockObj = new object();
         // public static List<unknownBlock> unknown = new List<unknownBlock>();
         public static string loadData = null;
 
@@ -97,16 +106,17 @@ namespace EEditor
         private Minimap minimap;
         private WorldArchiveMenu worldArchiveMenu;
         public static MainForm form1;
-        public MainForm()
+        public MainForm(string[] args)
         {
+
             InitializeComponent();
             form1 = this;
             if (!Directory.Exists($"{Directory.GetCurrentDirectory()}\\blueprints")) Directory.CreateDirectory($"{Directory.GetCurrentDirectory()}\\blueprints");
 
-            if (File.Exists(pathSettings))
+            if (System.IO.File.Exists(pathSettings))
             {
                 //var output = JObject.Parse(File.ReadAllText(pathSettings));
-                userdata = JsonConvert.DeserializeObject<userData>(File.ReadAllText(pathSettings));
+                userdata = JsonConvert.DeserializeObject<userData>(System.IO.File.ReadAllText(pathSettings));
                 if (userdata != null)
                 {
 
@@ -163,7 +173,7 @@ namespace EEditor
 
 
                     };
-                    File.WriteAllText(pathSettings, JsonConvert.SerializeObject(userdata, Newtonsoft.Json.Formatting.Indented));
+                    System.IO.File.WriteAllText(pathSettings, JsonConvert.SerializeObject(userdata, Newtonsoft.Json.Formatting.Indented));
                 }
             }
             else
@@ -195,7 +205,7 @@ namespace EEditor
                     lastcheck = DateTime.Now,
 
                 };
-                File.WriteAllText(pathSettings, JsonConvert.SerializeObject(userdata, Newtonsoft.Json.Formatting.Indented));
+                System.IO.File.WriteAllText(pathSettings, JsonConvert.SerializeObject(userdata, Newtonsoft.Json.Formatting.Indented));
             }
 
             userdata.useColor = false;
@@ -221,7 +231,7 @@ namespace EEditor
             {
                 Size = new Size(25, 25),
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
-        };
+            };
             editArea.Minimap = minimap;
             panel1.Controls.Add(minimap);
             minimap.BringToFront();
@@ -334,7 +344,7 @@ namespace EEditor
                 { 1560, 257 },{ 1561, 258 },{ 1562, 259 },{ 1564, 260 },{ 1565, 261 },{ 1566, 262 },
                 { 1567, 263 },{ 1568, 264 },{ 1582, 265 },{ 1583, 266 }, { 1589, 267 }, { 1590, 268 },{ 1591, 269},{ 1598, 270},
                 { 1599, 271},{ 1600, 272},{ 1601, 273}, { 1603, 274 }, { 1604, 275}, { 1622,276}, { 1623, 277 }, { 1624, 278 }, { 1000, 176 }
-                
+
             };
             for (int i = 0; i < decorInit.Length / 2; i++)
             {
@@ -443,14 +453,14 @@ namespace EEditor
             DetectBlocks();
 
             delay = new List<int>();
-            executeInitArea(); 
+            executeInitArea();
             frameSelector.SelectedIndex = 0;
 
             this.Text = "EEOditor " + this.ProductVersion;
 
             timer.Elapsed += timer_Elapsed;
             timer.Start();
-            
+
             Tool.PenSize = 1;
 
             filterTextBox.KeyDown += filterTextBox_KeyDown;
@@ -469,12 +479,15 @@ namespace EEditor
 
             //flowLayoutPanel2.AutoScrollMinSize = new Size(100, 60);
             MainForm.editArea.Focus();
-        }
+            //if (args.Length == 1)
+            //{
+            //}
 
-        
+        }
         private void executeInitArea()
         {
             editArea.Init(25, 25);
+            sesu.Release();
         }
         public void updateTheme()
         {
@@ -482,17 +495,17 @@ namespace EEditor
             {
                 themecolors = new theme()
                 {
-                    
-                    background = ColorTranslator.FromHtml("#2E3440"),
-                    imageColors = Color.White,
-                    accent = ColorTranslator.FromHtml("#3B4252"),
-                    foreground = Color.White,
+
+                    background = ColorTranslator.FromHtml("#282A36"),
+                    imageColors = ColorTranslator.FromHtml("#F8F8F2"),
+                    accent = ColorTranslator.FromHtml("#44475A"),
+                    foreground = ColorTranslator.FromHtml("#F8F8F2"),
                     link = Color.Orange,
                     activelink = Color.Yellow,
                     visitedlink = Color.Orange,
-                    groupbox = ColorTranslator.FromHtml("#FDB484"),
+                    groupbox = ColorTranslator.FromHtml("#BD93F9"),
 
-            };
+                };
             }
             else
             {
@@ -566,8 +579,8 @@ namespace EEditor
                                                     {
                                                         if (bmpa.GetPixel(x, y).A > 80)
                                                         {
- 
-                                                                bmpa1.SetPixel(x, y, themecolors.imageColors);
+
+                                                            bmpa1.SetPixel(x, y, themecolors.imageColors);
                                                         }
                                                         else
                                                         {
@@ -871,6 +884,7 @@ namespace EEditor
                 if (ToolPen.undolist.Count >= 1 || ToolPen.redolist.Count >= 1) if (!historyButton.IsDisposed) { try { this.Invoke((MethodInvoker)delegate { historyButton.Enabled = true; }); } catch { } }
                 if (ToolPen.undolist.Count == 0 && ToolPen.redolist.Count == 0) if (!historyButton.IsDisposed) { try { this.Invoke((MethodInvoker)delegate { historyButton.Enabled = false; }); } catch { } }
             }
+
         }
 
         #endregion Undo, redo, history updater
@@ -1536,7 +1550,7 @@ namespace EEditor
 
                     }
                     blocksdb.Add(new listofBlocks() { mode = mode, blocks = values, name = desc });
-                    
+
                 }
 
                 int length = ids.Length;
@@ -2903,7 +2917,7 @@ namespace EEditor
                 if (form.MapFrame != null)
                 {
 
-                    ExecuteInitFrame(form.MapFrame,false);
+                    ExecuteInitFrame(form.MapFrame, false);
 
                 }
                 else
@@ -2918,13 +2932,13 @@ namespace EEditor
                 form.notsaved = false;
             }
         }
-        private void ExecuteInitFrame(Frame mapframe,bool frame)
+        private void ExecuteInitFrame(Frame mapframe, bool frame)
         {
             editArea.Init(mapframe, frame);
         }
-        private void ExecuteInitWH(int width,int height)
+        private void ExecuteInitWH(int width, int height)
         {
-            editArea.Init(width,height);
+            editArea.Init(width, height);
         }
         //Load
         private void new33ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -4254,7 +4268,7 @@ namespace EEditor
                 s += shortCutButtons[i] == null ? -1 : shortCutButtons[i].ID;
             }
             userdata.brickHotkeys = s;
-            File.WriteAllText(pathSettings, JsonConvert.SerializeObject(userdata, Newtonsoft.Json.Formatting.Indented));
+            System.IO.File.WriteAllText(pathSettings, JsonConvert.SerializeObject(userdata, Newtonsoft.Json.Formatting.Indented));
             //Clear block rotations
             ToolPen.rotation.Clear();
             ToolPen.text.Clear();
@@ -4538,7 +4552,7 @@ namespace EEditor
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     Frame frame = Frame.LoadFromEELVL(ofd.FileName);
-                    if (frame.toobig) 
+                    if (frame.toobig)
                     {
                         MessageBox.Show("Can't load this world. It's too big. Max size: 637x460 or 460x637", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         ofd.Dispose();
@@ -4872,8 +4886,14 @@ namespace EEditor
             }
             selectionTool = false;
         }
+
+        private void exportAsEverythingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
+    
     public class listofBlocks
     {
         public int mode { get; set; }
